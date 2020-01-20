@@ -1,0 +1,22 @@
+﻿<h3>MealTracker</h3>
+<p class="Contributor">
+	GIBS.com <br />
+	<a href="mailto:modules@gibs.com">modules@gibs.com</a><br />
+	<a href=http://www.gibs.com/>http://www.gibs.com/</a><br />
+	This extension was created using <a href="http://www.christoc.com">Christoc's</a> Module Development Templates for DNN.
+</p>
+<hr/>
+<div class="License">
+	<h3>About the MealTracker</h3>
+	<p class="Owner">
+		<b>Version 00.00.05</b><br /><br />
+	</p>
+	<p>Description about version.</p>
+	
+	<h4>Bug Fixes</h4>
+	<ul>
+			<li>List</li>
+
+	</ul>
+	
+</div>
