@@ -1,5 +1,5 @@
 ﻿/*
-' Copyright (c) 2017  GIBS.com
+' Copyright (c) 2023  GIBS.com
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED

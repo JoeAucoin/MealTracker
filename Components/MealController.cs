@@ -10,22 +10,67 @@ namespace GIBS.Modules.MealTracker.Components
     public class MealController
     {
 
-        public static List<MealInfo> GetAllMeals(int moduleID)
+        public MealInfo GetLocationByID(int locationID)
+        {
+            return CBO.FillObject<MealInfo>(DataProvider.Instance().GetLocationByID(locationID));
 
-        {   //todo: look at caching
-
-            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_Get(moduleID));
+        }
+        public MealInfo GetMeal(int mealID)
+        {
+            return CBO.FillObject<MealInfo>(DataProvider.Instance().GetMeal(mealID));
 
         }
 
-        public static List<MealInfo> Report(int moduleID, string startDate, string endDate)
+        public static List<MealInfo> GetLocations(string isActive)
 
         {   //todo: look at caching
 
-            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_Report(moduleID, startDate, endDate));
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_GetLocations(isActive));
 
         }
 
+        public static List<MealInfo> GetLocationTowns(string isActive)
+
+        {   //todo: look at caching
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_GetLocationTowns(isActive));
+
+        }
+
+
+        public static List<MealInfo> GetLocationCodeSearchNames()
+
+        {
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_GetLocationCodeSearchNames());
+
+        }
+
+
+        public static List<MealInfo> GetAllMeals(int locationID, int portalID)
+
+        {   //todo: look at caching
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_Get(locationID, portalID));
+
+        }
+
+        public static List<MealInfo> Report(string location, string startDate, string endDate, int portalID, string city, string locationCode)
+
+        {   //todo: look at caching
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_Report(location, startDate, endDate, portalID, city, locationCode));
+
+        }
+
+
+        public static List<MealInfo> ReportSummary(string location, string startDate, string endDate, int portalID, string city, string locationCode)
+
+        {   //todo: look at caching
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_ReportSummary(location, startDate, endDate, portalID, city, locationCode));
+
+        }
 
         public static int SaveMeal(MealInfo mi)
 
@@ -35,12 +80,13 @@ namespace GIBS.Modules.MealTracker.Components
 
             {
                 // NEED UPDATE
-                //mi.MealID = DataProvider.Instance().MealTracker_UpdateMeal(mi);
+              //  DataProvider.Instance().MealTracker_MealUpdate(mi);
+              //  mi.MealID = 0;
 
                 //var cntTaxonomy = new Taxonomy.Content();
 
                 //var objContentItem = cntTaxonomy.CreateContentItem(a, tabId);
-                
+
                 //a.ContentItemId = objContentItem.ContentItemId;
 
                 //SaveArticle(a, tabId);
@@ -65,6 +111,21 @@ namespace GIBS.Modules.MealTracker.Components
         public static void DeleteMeal(int mealID)
         {
             DataProvider.Instance().DeleteMeal(mealID);
+        }
+
+        public static void UpdateMeal(MealInfo mi)
+        {
+            DataProvider.Instance().MealTracker_MealUpdate(mi);
+        }
+
+        public static void UpdateLocation(MealInfo mi)
+        {
+            DataProvider.Instance().MealTracker_UpdateLocation(mi);
+        }
+
+        public static void InsertLocation(MealInfo mi)
+        {
+            DataProvider.Instance().MealTracker_InsertLocation(mi);
         }
 
     }

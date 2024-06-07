@@ -1,5 +1,5 @@
 ﻿/*
-' Copyright (c) 2017  GIBS.com
+' Copyright (c) 2023  GIBS.com
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -11,6 +11,8 @@
 */
 
 using System;
+using System.Web.UI.WebControls;
+using DotNetNuke.Common.Lists;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 
@@ -51,19 +53,47 @@ namespace GIBS.Modules.MealTracker
             {
                 if (Page.IsPostBack == false)
                 {
-                    //Check for existing settings and use those on this page
-                    //Settings["SettingName"]
+                    var ctlLists = new ListController();
+                    var myLists = ctlLists.GetListInfoCollection(string.Empty, string.Empty, PortalSettings.ActiveTab.PortalID);
+                    //ddlLocationList.Items.Clear();
+                    
+                    ddlLocationList.DataTextField = "Name";
+                    ddlLocationList.DataValueField = "Name";
+                    ddlLocationList.DataSource = myLists;
+                    ddlLocationList.DataBind();
+                    ddlLocationList.Items.Insert(0, new ListItem("-Select-", ""));
 
-                    /* uncomment to load saved settings in the text boxes
-                    if(Settings.Contains("Setting1"))
-                        txtSetting1.Text = Settings["Setting1"].ToString();
-	
-                    */		
-                    if (Settings.Contains("jQueryUI"))
+                    //ddlSeatingList
+                    ddlSeatingList.DataTextField = "Name";
+                    ddlSeatingList.DataValueField = "Name";
+                    ddlSeatingList.DataSource = myLists;
+                    ddlSeatingList.DataBind();
+                    ddlSeatingList.Items.Insert(0, new ListItem("-Select-", ""));
+
+                }
+                // gvLists.DataSource = ctlLists.GetListInfoCollection(string.Empty, string.Empty, PortalSettings.ActiveTab.PortalID);;
+
+
+
+
+
+                //Check for existing settings and use those on this page
+                //Settings["SettingName"]
+
+                /* uncomment to load saved settings in the text boxes
+                 *  */
+                if (Settings.Contains("locationsList"))
+                    ddlLocationList.SelectedValue = Settings["locationsList"].ToString();
+
+                if (Settings.Contains("seatingList"))
+                    ddlSeatingList.SelectedValue = Settings["seatingList"].ToString();
+
+
+                if (Settings.Contains("jQueryUI"))
                         txtjQueryUI.Text = Settings["jQueryUI"].ToString();
 
 
-                }
+                
             }
             catch (Exception exc) //Module failed to load
             {
@@ -85,6 +115,8 @@ namespace GIBS.Modules.MealTracker
                 //the following are two sample Module Settings, using the text boxes that are commented out in the ASCX file.
                 //module settings
                 modules.UpdateModuleSetting(ModuleId, "jQueryUI", txtjQueryUI.Text);
+                modules.UpdateModuleSetting(ModuleId, "locationsList", ddlLocationList.SelectedValue.ToString());
+                modules.UpdateModuleSetting(ModuleId, "seatingList", ddlSeatingList.SelectedValue.ToString());
                 //modules.UpdateModuleSetting(ModuleId, "Setting2", txtSetting2.Text);
 
                 //tab module settings

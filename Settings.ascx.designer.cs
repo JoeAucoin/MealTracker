@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GIBS.Modules.MealTracker {
-    
-    
-    public partial class Settings {
-        
+namespace GIBS.Modules.MealTracker
+{
+
+
+    public partial class Settings
+    {
+
         /// <summary>
         /// lbljQueryUI control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lbljQueryUI;
-        
+
         /// <summary>
         /// txtjQueryUI control.
         /// </summary>
@@ -29,5 +31,41 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtjQueryUI;
+
+        /// <summary>
+        /// lblLocationsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblLocationsList;
+
+        /// <summary>
+        /// ddlLocationList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocationList;
+
+        /// <summary>
+        /// lblSeatingList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblSeatingList;
+
+        /// <summary>
+        /// ddlSeatingList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSeatingList;
     }
 }

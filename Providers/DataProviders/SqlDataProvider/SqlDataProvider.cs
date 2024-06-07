@@ -1,5 +1,5 @@
 /*
-' Copyright (c) 2017 GIBS.com
+' Copyright (c) 2023 GIBS.com
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -137,15 +137,31 @@ namespace GIBS.Modules.MealTracker.Data
         #endregion
 
         #region Public Methods
-
-        public override IDataReader MealTracker_Get(int moduleId)
+        public override IDataReader MealTracker_GetLocations(string isActive)
         {
-            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Get", moduleId);
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetLocations", isActive);
+        }
+        public override IDataReader MealTracker_GetLocationCodeSearchNames()
+        {
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetLocationCodeSearchNames");
+        }
+        public override IDataReader MealTracker_GetLocationTowns(string isActive)
+        {
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetLocationTowns", isActive);
+        }
+        public override IDataReader MealTracker_Get(int locationID, int portalID)
+        {
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Get", locationID, portalID);
         }
 
-        public override IDataReader MealTracker_Report(int moduleId, string startDate, string endDate)
+        public override IDataReader MealTracker_Report(string location, string startDate, string endDate, int portalID, string city, string locationCode)
         {
-            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Report", moduleId, startDate, endDate);
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Report", location, startDate, endDate, portalID, city, locationCode);
+        }
+
+        public override IDataReader MealTracker_ReportSummary(string location, string startDate, string endDate, int portalID, string city, string locationCode)
+        {
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_ReportSummary", location, startDate, endDate, portalID, city, locationCode);
         }
 
         ////DateTime mealDate, string seating, int childCount, int adultCount, int platesServed, int moduleID, string notes, int createdByUserID
@@ -154,19 +170,85 @@ namespace GIBS.Modules.MealTracker.Data
         {
             return Convert.ToInt32(SqlHelper.ExecuteScalar(ConnectionString, NamePrefix + "MealTracker_Insert"
                 , new SqlParameter("@MealDate", mi.MealDate)
+                 , new SqlParameter("@Location", mi.Location)
+                 , new SqlParameter("@LocationID", mi.LocationID)
                 , new SqlParameter("@Seating", mi.Seating)
-                , new SqlParameter("@ChildCount", mi.ChildCount)
-                , new SqlParameter("@AdultCount", mi.AdultCount)
-                , new SqlParameter("@PlatesServed", mi.PlatesServed)
-                , new SqlParameter("@ModuleId", mi.ModuleID)
+                , new SqlParameter("@DeliveredCount", mi.DeliveredCount)
+                , new SqlParameter("@FirstsCount", mi.FirstsCount)
+                , new SqlParameter("@SecondsCount", mi.SecondsCount)
                 , new SqlParameter("@Notes", mi.Notes)
-                , new SqlParameter("@ModuleId", mi.CreatedByUserID)
+                 , new SqlParameter("@CreatedByUserID", mi.CreatedByUserID)
+                , new SqlParameter("@PortalID", mi.MTPortalID)
+                , new SqlParameter("@Adults", mi.Adults)
+                , new SqlParameter("@DESE", mi.DESE)
                 ));
+        }
+
+        public override void MealTracker_MealUpdate(MealInfo mi)
+        {
+            SqlHelper.ExecuteNonQuery(ConnectionString, NamePrefix + "MealTracker_MealUpdate"
+
+                , new SqlParameter("@DeliveredCount", mi.DeliveredCount)
+                , new SqlParameter("@FirstsCount", mi.FirstsCount)
+                , new SqlParameter("@SecondsCount", mi.SecondsCount)
+                , new SqlParameter("@MealID", mi.MealID)
+                , new SqlParameter("@Adults", mi.Adults)
+                );
         }
 
         public override void DeleteMeal(int mealID)
         {
             SqlHelper.ExecuteNonQuery(ConnectionString, CommandType.StoredProcedure, NamePrefix + "MealTracker_Delete", new SqlParameter("@MealID", mealID));
+        }
+
+        public override IDataReader GetMeal(int mealID)
+        {
+            return (IDataReader)SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetMeal", mealID);
+        }
+
+        public override IDataReader GetLocationByID(int locationID)
+        {
+            return (IDataReader)SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetLocationByID", locationID);
+        }
+
+        public override void MealTracker_UpdateLocation(MealInfo mi)
+        {
+            SqlHelper.ExecuteNonQuery(ConnectionString, NamePrefix + "MealTracker_LocationUpdate"
+
+                , new SqlParameter("@LocationCode", mi.LocationCode)
+                , new SqlParameter("@Location", mi.Location)
+                , new SqlParameter("@Address", mi.Address)
+                , new SqlParameter("@City", mi.City)
+                , new SqlParameter("@Region", mi.Region)
+                , new SqlParameter("@ZipCode", mi.ZipCode)
+                , new SqlParameter("@DESE_Breakfast", mi.DESE_Breakfast)
+                , new SqlParameter("@DESE_Lunch", mi.DESE_Lunch)
+                , new SqlParameter("@DESE_Snack", mi.DESE_Snack)
+                , new SqlParameter("@IsActive", mi.IsActive)
+                , new SqlParameter("@LastModifiedByUserID", mi.LastModifiedByUserID)
+                , new SqlParameter("@LocationID", mi.LocationID)
+                , new SqlParameter("@DESE_Snack_PM", mi.DESE_Snack_PM)
+                );
+        }
+
+        public override void MealTracker_InsertLocation(MealInfo mi)
+        {
+            SqlHelper.ExecuteNonQuery(ConnectionString, NamePrefix + "MealTracker_LocationInsert"
+                , new SqlParameter("@PortalID", mi.MTPortalID)
+                , new SqlParameter("@LocationCode", mi.LocationCode)
+                , new SqlParameter("@Location", mi.Location)
+                , new SqlParameter("@Address", mi.Address)
+                , new SqlParameter("@City", mi.City)
+                , new SqlParameter("@Region", mi.Region)
+                , new SqlParameter("@ZipCode", mi.ZipCode)
+                , new SqlParameter("@DESE_Breakfast", mi.DESE_Breakfast)
+                , new SqlParameter("@DESE_Lunch", mi.DESE_Lunch)
+                , new SqlParameter("@DESE_Snack", mi.DESE_Snack)
+                , new SqlParameter("@IsActive", mi.IsActive)
+                , new SqlParameter("@LastModifiedByUserID", mi.LastModifiedByUserID)
+                 , new SqlParameter("@DESE_Snack_PM", mi.DESE_Snack_PM)
+
+                );
         }
 
         //public override IDataReader GetItem(int itemId)

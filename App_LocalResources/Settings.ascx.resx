@@ -123,6 +123,12 @@
   <data name="lbljQueryUI.Text" xml:space="preserve">
     <value>jQueryUI Stylesheet</value>
   </data>
+  <data name="lblLocationsList.Text" xml:space="preserve">
+    <value>Locations List</value>
+  </data>
+  <data name="lblSeatingList.Text" xml:space="preserve">
+    <value>Seating List</value>
+  </data>
   <data name="lblSetting1.Text" xml:space="preserve">
     <value>Setting One</value>
   </data>

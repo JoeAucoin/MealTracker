@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="MealTracker" type="Module" version="00.00.05">
+    <package name="MealTracker" type="Module" version="00.00.16">
       <friendlyName>MealTracker</friendlyName>
       <description>GIBS.com MealTracker module</description>
       <iconFile>~/Images/icon_extensions_32px.png</iconFile>
@@ -28,18 +28,39 @@
             </script>
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
-              <name>00.00.03.SqlDataProvider</name>
-              <version>00.00.03</version>
+              <name>00.00.07.SqlDataProvider</name>
+              <version>00.00.07</version>
             </script>
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
-              <name>00.00.04.SqlDataProvider</name>
-              <version>00.00.04</version>
+              <name>00.00.08.SqlDataProvider</name>
+              <version>00.00.08</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>00.00.10.SqlDataProvider</name>
+              <version>00.00.10</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>00.00.11.SqlDataProvider</name>
+              <version>00.00.11</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>00.00.14.SqlDataProvider</name>
+              <version>00.00.14</version>
+            </script>
+            <script type="Install">
+              <path>Providers\DataProviders\SqlDataProvider</path>
+              <name>00.00.15.SqlDataProvider</name>
+              <version>00.00.15</version>
             </script>            
+            
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>00.00.01</version>
+              <version>00.00.16</version>
             </script>
           </scripts>
         </component>
@@ -84,9 +105,20 @@
                     <controlType>View</controlType>
                     <iconFile />
                     <helpUrl />
-                    <viewOrder>0</viewOrder>
-                    <supportsPopUps>True</supportsPopUps>
-                  </moduleControl>                  
+                    <viewOrder>2</viewOrder>
+                    <supportsPopUps>False</supportsPopUps>
+                  </moduleControl>
+                  <moduleControl>
+                    <controlKey>Locations</controlKey>
+                    <controlSrc>DesktopModules/MealTracker/Locations.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Manage Programs</controlTitle>
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>1</viewOrder>
+                    <supportsPopUps>False</supportsPopUps>
+                  </moduleControl>
                   <moduleControl>
                     <controlKey>Edit</controlKey>
                     <controlSrc>DesktopModules/MealTracker/Edit.ascx</controlSrc>

@@ -13,6 +13,21 @@
         <asp:Textbox ID="txtjQueryUI" runat="server" />
            
      </div>	
+
+
+	<div class="dnnFormItem">
+        <dnn:Label runat="server" ID="lblLocationsList" ControlName="Locations" ResourceKey="lblLocationsList" Suffix=":" />
+        <asp:DropDownList ID="ddlLocationList" runat="server" CssClass="form-control input-lg">
+    </asp:DropDownList>	
+           
+     </div>
+	<div class="dnnFormItem">
+        <dnn:Label runat="server" ID="lblSeatingList" ControlName="ddlSeatingList" ResourceKey="lblSeatingList" Suffix=":" />
+            <asp:DropDownList ID="ddlSeatingList" runat="server" CssClass="form-control input-lg">
+    </asp:DropDownList>	
+           
+     </div>	
+
     </fieldset>
 
 

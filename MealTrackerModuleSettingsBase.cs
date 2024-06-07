@@ -1,5 +1,5 @@
 ﻿/*
-' Copyright (c) 2017  GIBS.com
+' Copyright (c) 2023  GIBS.com
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -16,5 +16,50 @@ namespace GIBS.Modules.MealTracker
 {
     public class MealTrackerModuleSettingsBase : ModuleSettingsBase
     {
+        public string JQueryUI
+        {
+            get
+            {
+                if (Settings.Contains("jQueryUI"))
+                    return Settings["jQueryUI"].ToString();
+                return "";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "jQueryUI", value.ToString());
+            }
+        }
+
+        public string LocationsList
+        {
+            get
+            {
+                if (Settings.Contains("locationsList"))
+                    return Settings["locationsList"].ToString();
+                return "";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "locationsList", value.ToString());
+            }
+        }
+
+        public string SeatingList
+        {
+            get
+            {
+                if (Settings.Contains("seatingList"))
+                    return Settings["seatingList"].ToString();
+                return "";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "seatingList", value.ToString());
+            }
+        }
+
     }
 }

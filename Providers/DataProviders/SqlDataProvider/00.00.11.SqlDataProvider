@@ -1,0 +1,703 @@
+﻿
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_ReportSummary]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_ReportSummary]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_ReportSummary]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Report]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Report]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Report]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_MealUpdate]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_MealUpdate]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_MealUpdate]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_LocationUpdate]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_LocationUpdate]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_LocationUpdate]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_LocationInsert]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_LocationInsert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_LocationInsert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Insert]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetMeal]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetMeal]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetMeal]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocationTowns]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetLocationTowns]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetLocationTowns]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocations]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetLocations]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetLocations]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocationByID]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetLocationByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetLocationByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Get]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Get]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Get]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Delete]    Script Date: 10/2/2023 7:17:10 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Delete]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Delete]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Delete]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		Joe Aucoin
+-- Create date: 10/01/2017
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Delete] 
+	-- Add the parameters for the stored procedure here
+	@MealID int
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	DELETE  FROM            GIBS_MealTracker
+WHERE        (MealID = @MealID)
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Get]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Get] 
+	-- Add the parameters for the stored procedure here
+@LocationID int,
+@PortalID int
+AS
+BEGIN
+
+Declare @LOCServiceLocation varchar(50)
+
+SET @LOCServiceLocation = @LocationID
+
+if(@LOCServiceLocation = '0' or @LOCServiceLocation is null  or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT        MealID, MealDate, [Location], Seating, DeliveredCount, FirstsCount, SecondsCount, Notes, CreatedOnDate, CreatedByUserID
+FROM            GIBS_MealTracker 
+where (1 = 1)
+AND (PortalID = @PortalID)
+and  (@LOCServiceLocation is null or [LocationID] = @LOCServiceLocation)
+order by MealDate desc, Seating
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocationByID]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetLocationByID] 
+	-- Add the parameters for the stored procedure here
+
+@LocationID int
+AS
+BEGIN
+
+SELECT [LocationID]
+      ,[PortalID]
+      ,[LocationCode]
+      ,[Location]
+      ,[Address]
+      ,[City]
+      ,[Region]
+      ,[ZipCode]
+      ,[DESE_Breakfast]
+      ,[DESE_Lunch]
+      ,[DESE_Snack]
+      ,[IsActive]
+      ,[CreatedOnDate]
+      ,[CreatedByUserID]
+      ,[LastModifiedByUserID]
+      ,[LastModifiedOnDate]
+  FROM [dbo].[GIBS_MealTrackerLocations]
+where (1 = 1)
+AND (LocationID = @LocationID)
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocations]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetLocations] 
+	-- Add the parameters for the stored procedure here
+@IsActive varchar(50)
+
+AS
+BEGIN
+
+Declare @LOCIsActive varchar(50)
+
+SET @LOCIsActive = @IsActive
+
+if(@LOCIsActive = '-1' or @LOCIsActive is null  or @LOCIsActive = '')
+begin
+	set @LOCIsActive = null;
+end
+
+
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT [LocationID]
+      ,[PortalID]
+      ,[LocationCode]
+      ,[Location]
+      ,[Address]
+      ,[City]
+      ,[Region]
+      ,[ZipCode]
+      ,[DESE_Breakfast]
+      ,[DESE_Lunch]
+      ,[DESE_Snack]
+      ,[IsActive]
+      ,[CreatedOnDate]
+      ,[CreatedByUserID]
+      ,[LastModifiedByUserID]
+      ,[LastModifiedOnDate]
+  FROM [dbo].[GIBS_MealTrackerLocations]
+where (1 = 1)
+
+and  (@LOCIsActive is null or IsActive = @LOCIsActive)
+
+order by [Location] asc 
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLocationTowns]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetLocationTowns] 
+	-- Add the parameters for the stored procedure here
+@IsActive varchar(50)
+
+AS
+BEGIN
+
+Declare @LOCIsActive varchar(50)
+
+SET @LOCIsActive = @IsActive
+
+if(@LOCIsActive = '-1' or @LOCIsActive is null  or @LOCIsActive = '')
+begin
+	set @LOCIsActive = null;
+end
+
+
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select distinct(city) AS City  from GIBS_MealTrackerLocations 
+where (1 = 1)
+
+and  (@LOCIsActive is null or IsActive = @LOCIsActive)
+
+order by City  
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetMeal]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetMeal] 
+	-- Add the parameters for the stored procedure here
+
+@MealID int
+AS
+BEGIN
+
+SELECT [MealID]
+      ,[PortalID]
+      ,[MealDate]
+      ,[Location]
+      ,[Seating]
+      ,[DeliveredCount]
+      ,[FirstsCount]
+      ,[SecondsCount]
+      ,[Notes]
+      ,[CreatedOnDate]
+      ,[CreatedByUserID]
+      ,[LocationID]
+  FROM [dbo].[GIBS_MealTracker]
+where (1 = 1)
+AND (MealID = @MealID)
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Insert]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Insert] 
+	-- Add the parameters for the stored procedure here
+	@MealDate DateTime,
+	@Location varchar(50),
+	@LocationID int,
+	@Seating varchar(50),
+	@DeliveredCount int,
+	@FirstsCount int,
+	@SecondsCount int,
+	
+	@Notes ntext,
+	@CreatedByUserID int,
+	@PortalID int
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	INSERT INTO GIBS_MealTracker
+                         ( MealDate, [Location], LocationID, Seating, DeliveredCount, FirstsCount, SecondsCount,  Notes, CreatedOnDate, CreatedByUserID, PortalID)
+VALUES        (@MealDate,
+				@Location,
+				@LocationID,
+				@Seating,
+				@DeliveredCount,
+				@FirstsCount,
+				@SecondsCount,
+				
+				@Notes,
+				GetDate(),
+				@CreatedByUserID,
+				@PortalID)
+Select @@Identity
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_LocationInsert]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_LocationInsert] 
+	-- Add the parameters for the stored procedure here
+	@PortalID int,
+	@LocationCode varchar(50),
+	@Location varchar(60),
+	@Address varchar(50),
+	@City varchar(50),
+	@Region varchar(20),
+	@ZipCode varchar(10),
+	@DESE_Breakfast bit,
+	@DESE_Lunch bit,
+	@DESE_Snack bit,
+	@IsActive bit,
+	@LastModifiedByUserID int
+	--@LocationID int
+
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+	INSERT INTO [dbo].[GIBS_MealTrackerLocations]
+           ([PortalID]
+           ,[LocationCode]
+           ,[Location]
+           ,[Address]
+           ,[City]
+           ,[Region]
+           ,[ZipCode]
+           ,[DESE_Breakfast]
+           ,[DESE_Lunch]
+           ,[DESE_Snack]
+           ,[IsActive]
+           ,[CreatedOnDate]
+           ,[CreatedByUserID]
+           ,[LastModifiedByUserID]
+           ,[LastModifiedOnDate])
+     VALUES
+           (@PortalID
+           ,@LocationCode
+           ,@Location
+           ,@Address
+           ,@City
+           ,@Region
+           ,@ZipCode
+           ,@DESE_Breakfast
+           ,@DESE_Lunch
+           ,@DESE_Snack
+           ,@IsActive
+           ,GetDate()
+           ,@LastModifiedByUserID
+           ,@LastModifiedByUserID
+           ,GetDate()
+		   )
+
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_LocationUpdate]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_LocationUpdate] 
+	-- Add the parameters for the stored procedure here
+	@LocationCode varchar(50),
+	@Location varchar(60),
+	@Address varchar(50),
+	@City varchar(50),
+	@Region varchar(20),
+	@ZipCode varchar(10),
+	@DESE_Breakfast bit,
+	@DESE_Lunch bit,
+	@DESE_Snack bit,
+	@IsActive bit,
+	@LastModifiedByUserID int,
+	@LocationID int
+
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE [dbo].[GIBS_MealTrackerLocations]
+   SET 
+      [LocationCode] = @LocationCode
+      ,[Location] = @Location
+      ,[Address] = @Address
+      ,[City] = @City
+      ,[Region] = @Region
+      ,[ZipCode] = @ZipCode
+      ,[DESE_Breakfast] = @DESE_Breakfast
+      ,[DESE_Lunch] = @DESE_Lunch
+      ,[DESE_Snack] = @DESE_Snack
+      ,[IsActive] = @IsActive
+      ,[LastModifiedByUserID] = @LastModifiedByUserID
+      ,[LastModifiedOnDate] = GetDate()
+
+ WHERE LocationID = @LocationID
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_MealUpdate]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_MealUpdate] 
+	-- Add the parameters for the stored procedure here
+	@DeliveredCount int,
+	@FirstsCount int,
+	@SecondsCount int,
+	@MealID int
+
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE [dbo].[GIBS_MealTracker]
+   SET
+      [DeliveredCount] = @DeliveredCount
+      ,[FirstsCount] = @FirstsCount
+      ,[SecondsCount] = @SecondsCount
+
+ WHERE MealID = @MealID
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Report]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Report] 
+	-- Add the parameters for the stored procedure here
+@Location varchar(50),
+@StartDate varchar(20),
+@EndDate varchar(20),
+@PortalID int,
+@City varchar(50)
+AS
+BEGIN
+
+Declare  @LOCStartDate datetime,
+       @LOCEndDate datetime,
+       @LOCPortalID int,
+       @LOCServiceLocation varchar(50),
+	    @LOCCity varchar(50)
+
+SET @LOCStartDate = @StartDate
+SET @LOCEndDate = @EndDate
+SET @LOCPortalID = @PortalID
+SET @LOCServiceLocation = @Location
+SET @LOCCity = @City
+
+if(@LOCCity='0' or @LOCCity is null or @LOCCity = '')
+begin
+	set @LOCCity=null;
+end
+
+if(@LOCServiceLocation='0' or @LOCServiceLocation is null)
+begin
+	set @LOCServiceLocation=null;
+end
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+--	SELECT    [LocationID], [Location],   MealDate AS [MealDate],    DeliveredCount,  FirstsCount,
+--  SecondsCount, FirstsCount + SecondsCount AS [TotalMealsCount] 
+--FROM            GIBS_MealTracker 
+
+
+SELECT        GIBS_MealTracker.MealID, 
+			RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)) AS MonthYear,
+
+			  GIBS_MealTracker.MealDate, GIBS_MealTracker.Location, GIBS_MealTracker.Seating, GIBS_MealTracker.DeliveredCount, GIBS_MealTracker.FirstsCount, 
+			  GIBS_MealTracker.SecondsCount, SecondsCount, FirstsCount + SecondsCount AS [TotalMealsCount] ,
+              GIBS_MealTracker.LocationID, GIBS_MealTrackerLocations.City
+FROM            GIBS_MealTracker INNER JOIN
+                         GIBS_MealTrackerLocations ON GIBS_MealTracker.LocationID = GIBS_MealTrackerLocations.LocationID
+
+WHERE (MealDate BETWEEN @StartDate AND @EndDate)
+AND (GIBS_MealTracker.PortalID = @PortalID)
+and  (@LOCServiceLocation is null or GIBS_MealTracker.LocationID = @LOCServiceLocation)
+and  (@LOCCity is null or GIBS_MealTrackerLocations.City = @LOCCity)
+--AND (GIBS_MealTracker.LocationID = 16)ID
+--Group by [Location], MealDate 
+ORDER BY [Location] , MealDate, Seating
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_ReportSummary]    Script Date: 10/2/2023 7:17:10 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_ReportSummary] 
+	-- Add the parameters for the stored procedure here
+@Location varchar(50),
+@StartDate varchar(20),
+@EndDate varchar(20),
+@PortalID int,
+@City varchar(50)
+AS
+BEGIN
+
+Declare  @LOCStartDate datetime,
+       @LOCEndDate datetime,
+       @LOCPortalID int,
+       @LOCServiceLocation varchar(50),
+	   @LOCCity varchar(50)
+
+SET @LOCStartDate = @StartDate
+SET @LOCEndDate = @EndDate
+SET @LOCPortalID = @PortalID
+SET @LOCServiceLocation = @Location
+SET @LOCCity = @City
+
+if(@LOCCity='0' or @LOCCity is null or @LOCCity = '')
+begin
+	set @LOCCity=null;
+end
+
+if(@LOCServiceLocation='0' or @LOCServiceLocation is null or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+SELECT      
+		
+		RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)) AS MonthYear,
+			--  GIBS_MealTracker.MealDate, 
+			  GIBS_MealTracker.Location, GIBS_MealTracker.Seating,
+			  Sum(GIBS_MealTracker.DeliveredCount) AS DeliveredCount, 
+			  Sum(GIBS_MealTracker.FirstsCount) AS FirstsCount, 
+			   Sum(SecondsCount) AS SecondsCount, 
+			   Sum(FirstsCount + SecondsCount) AS [TotalMealsCount] ,
+			   Count(MealID) AS ServiceDays
+			 --  , GIBS_MealTracker.LocationID
+			  --, GIBS_MealTrackerLocations.City
+FROM            GIBS_MealTracker INNER JOIN
+                         GIBS_MealTrackerLocations ON GIBS_MealTracker.LocationID = GIBS_MealTrackerLocations.LocationID
+
+
+
+			WHERE (MealDate BETWEEN @StartDate AND @EndDate)
+			AND (GIBS_MealTracker.PortalID = @PortalID)
+			
+			and  (@LOCServiceLocation is null or GIBS_MealTracker.LocationID = @LOCServiceLocation)
+			and  (@LOCCity is null or GIBS_MealTrackerLocations.City = @LOCCity)
+			GROUP BY  GIBS_MealTracker.Location,
+			RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)),
+			GIBS_MealTracker.Seating
+
+--Group by [Location], MealDate 
+ORDER BY [Location] , Seating
+
+
+END
+GO
+
+

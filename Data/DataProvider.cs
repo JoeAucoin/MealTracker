@@ -1,5 +1,5 @@
 /*
-' Copyright (c) 2017 GIBS.com
+' Copyright (c) 2023 GIBS.com
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -79,13 +79,23 @@ namespace GIBS.Modules.MealTracker.Data
         //public abstract IDataReader GetItems(int userId, int portalId);
 
         //public abstract IDataReader GetItem(int itemId);        
-
-        public abstract IDataReader MealTracker_Get(int moduleId);
-        public abstract IDataReader MealTracker_Report(int moduleId, string startDate, string endDate);
-    ////    public abstract IDataReader MealTracker_GetMeal(int mealID);
+        public abstract IDataReader MealTracker_GetLocations(string isActive);
+        public abstract IDataReader MealTracker_GetLocationTowns(string isActive);
+        public abstract IDataReader MealTracker_GetLocationCodeSearchNames();
+        public abstract IDataReader MealTracker_Get(int locationID, int portalID);
+        public abstract IDataReader MealTracker_Report(string location, string startDate, string endDate, int portalID, string city, string locationCode);
+        public abstract IDataReader MealTracker_ReportSummary(string location, string startDate, string endDate, int portalID, string city, string locationCode);
+        ////    public abstract IDataReader MealTracker_GetMeal(int mealID);
         public abstract int MealTracker_AddMeal(MealInfo mi);
+        public abstract void MealTracker_MealUpdate(MealInfo mi);
         public abstract void DeleteMeal(int mealID);
 
+        public abstract IDataReader GetMeal(int mealID);
+        public abstract IDataReader GetLocationByID(int locationID);
+
+        public abstract void MealTracker_UpdateLocation(MealInfo mi);
+
+        public abstract void MealTracker_InsertLocation(MealInfo mi);
         #endregion
 
     }

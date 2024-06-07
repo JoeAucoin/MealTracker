@@ -2,7 +2,7 @@
 	<h3>License</h3>
 	<p class="Owner">
 		GIBS.com  <a href=http://www.gibs.com/>http://www.gibs.com/</a></br>
-		Copyright (c) 2017</br>	
+		Copyright (c) 2023</br>	
 		by GIBS.com</br>
 	</p>
     <p>

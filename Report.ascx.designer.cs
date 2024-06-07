@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GIBS.Modules.MealTracker {
-    
-    
-    public partial class Report {
-        
+namespace GIBS.Modules.MealTracker
+{
+
+
+    public partial class Report
+    {
+
         /// <summary>
         /// btnFilter control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnFilter;
-        
+
         /// <summary>
         /// lblStartDate control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblStartDate;
-        
+
         /// <summary>
         /// txtStartDate control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
-        
+
         /// <summary>
         /// lblEndDate control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblEndDate;
-        
+
         /// <summary>
         /// txtEndDate control.
         /// </summary>
@@ -56,7 +58,61 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-        
+
+        /// <summary>
+        /// lblLocationCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblLocationCode;
+
+        /// <summary>
+        /// ddlLocationCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocationCode;
+
+        /// <summary>
+        /// lblLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblLocation;
+
+        /// <summary>
+        /// ddlLocationID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocationID;
+
+        /// <summary>
+        /// lblTowns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblTowns;
+
+        /// <summary>
+        /// ddlTowns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTowns;
+
         /// <summary>
         /// GridViewSummaryReport control.
         /// </summary>
@@ -65,7 +121,16 @@ namespace GIBS.Modules.MealTracker {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewSummaryReport;
-        
+
+        /// <summary>
+        /// gv_Report control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_Report;
+
         /// <summary>
         /// btnReturn control.
         /// </summary>

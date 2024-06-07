@@ -123,28 +123,124 @@
   <data name="lbCancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="lblAdultCount.Text" xml:space="preserve">
-    <value># Adults</value>
+  <data name="lblAdults.Text" xml:space="preserve">
+    <value>Adults</value>
   </data>
-  <data name="lblChildCount.Text" xml:space="preserve">
-    <value># Children</value>
+  <data name="lblAdultsCountEdit.Text" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="lblAdultsFri.Text" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="lblAdultsThurs.Text" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="lblAdultsTues.Text" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="lblAdultsWeds.Text" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="lblDelivered.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeliveredEdit.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeliveredFri.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeliveredThurs.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeliveredTues.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeliveredWeds.Text" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="lblDeseCbx.Text" xml:space="preserve">
+    <value>DESE</value>
+  </data>
+  <data name="lblFirstsCount.Text" xml:space="preserve">
+    <value>Firsts</value>
+  </data>
+  <data name="lblFirstsCountEdit.Text" xml:space="preserve">
+    <value>Firsts</value>
+  </data>
+  <data name="lblFirstsCountFri.Text" xml:space="preserve">
+    <value>Firsts</value>
+  </data>
+  <data name="lblFirstsCountThurs.Text" xml:space="preserve">
+    <value>Firsts</value>
+  </data>
+  <data name="lblFirstsCountTues.Text" xml:space="preserve">
+    <value>Firsts</value>
+  </data>
+  <data name="lblFirstsCountWeds.Text" xml:space="preserve">
+    <value>Firsts</value>
   </data>
   <data name="lblMealDate.Text" xml:space="preserve">
-    <value>Service Date</value>
+    <value>Monday</value>
+  </data>
+  <data name="lblMealDateEdit.Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="lblMealDateFri.Text" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="lblMealDateThurs.Text" xml:space="preserve">
+    <value>Thurs</value>
+  </data>
+  <data name="lblMealDateTues.Text" xml:space="preserve">
+    <value>Tues</value>
+  </data>
+  <data name="lblMealDateWeds.Text" xml:space="preserve">
+    <value>Weds</value>
   </data>
   <data name="lblMealNotes.Text" xml:space="preserve">
     <value>Notes</value>
   </data>
-  <data name="lblPlatesServed.Text" xml:space="preserve">
-    <value># Meals</value>
+  <data name="lblNoteDays.Text" xml:space="preserve">
+    <value>Add to</value>
+  </data>
+  <data name="lbLocations.Text" xml:space="preserve">
+    <value>Programs</value>
+  </data>
+  <data name="lblSchoolLocation.Text" xml:space="preserve">
+    <value>Program</value>
   </data>
   <data name="lblSeating.Text" xml:space="preserve">
-    <value>Seating</value>
+    <value>Meal</value>
+  </data>
+  <data name="lblSecondsCount.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="lblSecondsCountEdit.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="lblSecondsCountFri.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="lblSecondsCountThurs.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="lblSecondsCountTues.Text" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="lblSecondsCountWeds.Text" xml:space="preserve">
+    <value>Seconds</value>
   </data>
   <data name="lbReport.Text" xml:space="preserve">
     <value>Reporting</value>
   </data>
   <data name="lbSave.Text" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="lbUpdateMeal.Text" xml:space="preserve">
+    <value>Update Meal</value>
+  </data>
+  <data name="LinkButtonCancelUpdate.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>
