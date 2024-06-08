@@ -92,8 +92,15 @@ namespace GIBS.Modules.MealTracker
                 if (Settings.Contains("jQueryUI"))
                         txtjQueryUI.Text = Settings["jQueryUI"].ToString();
 
+                if (Settings.Contains("deliveryStartTime"))
+                    txtDeliveryStartTime.Text = Settings["deliveryStartTime"].ToString();
 
-                
+                if (Settings.Contains("deliveryEndTime"))
+                    txtDeliveryEndTime.Text = Settings["deliveryEndTime"].ToString();
+
+                if (Settings.Contains("deliveryInterval"))
+                    txtDeliveryInterval.Text = Settings["deliveryInterval"].ToString();
+
             }
             catch (Exception exc) //Module failed to load
             {
@@ -117,6 +124,10 @@ namespace GIBS.Modules.MealTracker
                 modules.UpdateModuleSetting(ModuleId, "jQueryUI", txtjQueryUI.Text);
                 modules.UpdateModuleSetting(ModuleId, "locationsList", ddlLocationList.SelectedValue.ToString());
                 modules.UpdateModuleSetting(ModuleId, "seatingList", ddlSeatingList.SelectedValue.ToString());
+                modules.UpdateModuleSetting(ModuleId, "deliveryStartTime", txtDeliveryStartTime.Text);
+                modules.UpdateModuleSetting(ModuleId, "deliveryEndTime", txtDeliveryEndTime.Text);
+                modules.UpdateModuleSetting(ModuleId, "deliveryInterval", txtDeliveryInterval.Text);
+
                 //modules.UpdateModuleSetting(ModuleId, "Setting2", txtSetting2.Text);
 
                 //tab module settings

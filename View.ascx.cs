@@ -54,6 +54,9 @@ namespace GIBS.Modules.MealTracker
         static bool _DESE_Lunch = false;
         static bool _DESE_Snack = false;
         static bool _DESE_Snack_PM = false;
+        public string _DeliveryStartTime = "10:00 AM";
+        public string _DeliveryEndTime = "02:00 PM";
+        public string _DeliveryInterval = "30";
 
         protected override void OnInit(EventArgs e)
         {
@@ -93,6 +96,7 @@ namespace GIBS.Modules.MealTracker
                 if (!IsPostBack)
                 {
                     LoadSettings();
+                    FillDeliveryTimeDropdowns();
 
                     GridView1.DataSource = MealController.GetAllMeals(0, this.PortalId);
                     GridView1.DataBind();
@@ -111,13 +115,6 @@ namespace GIBS.Modules.MealTracker
 
                 //}
 
-                //if (this.UserId > 1)
-                //{
-                //    DotNetNuke.Security.Roles.RoleController rolesController = new DotNetNuke.Security.Roles.RoleController();
-                //    UserRoleInfo role = rolesController.GetUserRole(0, this.UserId, rolesController.GetRoleByName(0, "Donor").RoleID);
-                //    DateTime expiryDate = role.ExpiryDate;
-                //    lblDebug.Text = expiryDate.ToShortDateString();
-                //}
             }
             catch (Exception exc) //Module failed to load
             {
@@ -125,6 +122,53 @@ namespace GIBS.Modules.MealTracker
             }
         }
 
+        public void FillDeliveryTimeDropdowns()
+        {
+
+            try
+            {
+              
+                DateTime start = DateTime.ParseExact(_DeliveryStartTime.ToString(), "hh:mm tt", null);
+                DateTime end = DateTime.ParseExact(_DeliveryEndTime.ToString(), "hh:mm tt", null);
+
+                int interval = Int16.Parse(_DeliveryInterval.ToString());
+                List<string> lstTimeIntervals = new List<string>();
+                for (DateTime i = start; i <= end; i = i.AddMinutes(interval))
+                    lstTimeIntervals.Add(i.ToString("hh:mm tt"));
+
+                ddlDeliveryTime.DataSource = lstTimeIntervals;
+                ddlDeliveryTime.DataBind();
+                ddlDeliveryTime.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+                ddlDeliveryTimeTues.DataSource = lstTimeIntervals;
+                ddlDeliveryTimeTues.DataBind();
+                ddlDeliveryTimeTues.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+                ddlDeliveryTimeWeds.DataSource = lstTimeIntervals;
+                ddlDeliveryTimeWeds.DataBind();
+                ddlDeliveryTimeWeds.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+                ddlDeliveryTimeThurs.DataSource = lstTimeIntervals;
+                ddlDeliveryTimeThurs.DataBind();
+                ddlDeliveryTimeThurs.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+                ddlDeliveryTimeFri.DataSource = lstTimeIntervals;
+                ddlDeliveryTimeFri.DataBind();
+                ddlDeliveryTimeFri.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+                ddlDeliveryTimeEdit.DataSource = lstTimeIntervals;
+                ddlDeliveryTimeEdit.DataBind();
+                ddlDeliveryTimeEdit.Items.Insert(0, new ListItem("-- Select --", "0"));
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
 
         public void FillGrid()
         {
@@ -161,7 +205,21 @@ namespace GIBS.Modules.MealTracker
                 }
 
 
+                if (Settings.Contains("deliveryStartTime"))
+                {
+                    _DeliveryStartTime = Settings["deliveryStartTime"].ToString();
 
+                }
+                if (Settings.Contains("deliveryEndTime"))
+                {
+                    _DeliveryEndTime = Settings["deliveryEndTime"].ToString();
+
+                }
+                if (Settings.Contains("deliveryInterval"))
+                {
+                    _DeliveryInterval = Settings["deliveryInterval"].ToString();
+
+                }
 
             }
             catch (Exception ex)
@@ -338,6 +396,8 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdults.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
+                        , DeliveryTime = txtMealDate.Text.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
+                        , DamagedIncomplete = Int32.Parse(txtDamagedIncomplete.Text.ToString())
 
                     };
 
@@ -374,6 +434,10 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdultsTues.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
+                              ,
+                        DeliveryTime = txtMealDateTues.Text.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
+                        ,
+                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteTues.Text.ToString())
 
                     };
 
@@ -407,7 +471,10 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdultsWeds.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
-
+                              ,
+                        DeliveryTime = txtMealDateWeds.Text.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
+                        ,
+                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteWeds.Text.ToString())
                     };
 
                     miWeds.Save();
@@ -441,6 +508,10 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdultsThurs.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
+                         ,
+                        DeliveryTime = txtMealDateThurs.Text.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
+                        ,
+                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteThurs.Text.ToString())
 
                     };
 
@@ -475,7 +546,10 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdultsFri.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
-
+                         ,
+                        DeliveryTime = txtMealDateFri.Text.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
+                        ,
+                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteFri.Text.ToString())
                     };
 
                     miFri.Save();
@@ -512,7 +586,17 @@ namespace GIBS.Modules.MealTracker
                 txtAdultsFri.Text = "";
                 CheckBoxDESE.Checked = false;
                 txtMealNotes.Text = string.Empty;
-                DDLNoteDays.SelectedValue = string.Empty;
+                DDLNoteDays.SelectedIndex = -1;
+                ddlDeliveryTime.SelectedIndex = -1;
+                ddlDeliveryTimeFri.ClearSelection();
+                ddlDeliveryTimeThurs.ClearSelection();
+                ddlDeliveryTimeTues.ClearSelection();
+                ddlDeliveryTimeWeds.ClearSelection();
+                txtDamagedIncomplete.Text = "0";
+                txtDamagedIncompleteTues.Text = "0";
+                txtDamagedIncompleteWeds.Text = "0";
+                txtDamagedIncompleteThurs.Text = "0";
+                txtDamagedIncompleteFri.Text = "0";
             }
             catch (Exception ex)
             {
@@ -660,35 +744,37 @@ namespace GIBS.Modules.MealTracker
         //}
 
 
-        public void UpdateMeal(int _mealID)
-        {
+        //public void UpdateMeal(int _mealID)
+        //{
 
-            try
-            {
+        //    try
+        //    {
 
-                MealInfo mi_update;
-                mi_update = new MealInfo
+        //        MealInfo mi_update;
+        //        mi_update = new MealInfo
 
-                {
-                    MealID = _mealID,
-                    DeliveredCount = Convert.ToInt32(txtDeliveredEdit.Text.ToString()),
-                    FirstsCount = Convert.ToInt32(txtFirstsCountEdit.Text.ToString()),
-                    SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()),
-                    Adults = Convert.ToInt32(txtAdultsCountEdit.Text.ToString())
-                };
+        //        {
+        //            MealID = _mealID,
+        //            DeliveredCount = Convert.ToInt32(txtDeliveredEdit.Text.ToString()),
+        //            FirstsCount = Convert.ToInt32(txtFirstsCountEdit.Text.ToString()),
+        //            SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()),
+        //            Adults = Convert.ToInt32(txtAdultsCountEdit.Text.ToString()),
+        //            DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
+        //            DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString()
+        //        };
 
-                mi_update.Save();
+        //        mi_update.Save();
 
-                FillGrid();
-                Panel1.Visible = false;
+        //        FillGrid();
+        //        Panel1.Visible = false;
 
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException(this, ex);
-            }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Exceptions.ProcessModuleLoadException(this, ex);
+        //    }
 
-        }
+        //}
 
 
         protected void lbUpdateMeal_Click(object sender, EventArgs e)
@@ -703,12 +789,22 @@ namespace GIBS.Modules.MealTracker
                 DeliveredCount = Convert.ToInt32(txtDeliveredEdit.Text.ToString()),
                 FirstsCount = Convert.ToInt32(txtFirstsCountEdit.Text.ToString()),
                 SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()), 
-                Adults = Convert.ToInt32( txtAdultsCountEdit.Text.ToString())
-                
+                Adults = Convert.ToInt32( txtAdultsCountEdit.Text.ToString()),
+                DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
+                DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString()
+
             };
 
             mi_update.Update();
 
+            ddlDeliveryTimeEdit.ClearSelection();
+            txtMealDateEdit.Text = string.Empty;
+            txtDeliveredEdit.Text = string.Empty;
+            txtDamagedIncompleteEdit.Text = string.Empty;
+            HiddenMealID.Value = string.Empty;
+            txtFirstsCountEdit.Text = string.Empty;
+            txtSecondsCountEdit.Text= string.Empty;
+            txtAdultsCountEdit.Text = string.Empty;
             FillGrid();
             Panel1.Visible = false;
 
@@ -716,6 +812,15 @@ namespace GIBS.Modules.MealTracker
 
         protected void LinkButtonCancelUpdate_Click(object sender, EventArgs e)
         {
+            ddlDeliveryTimeEdit.ClearSelection();
+            txtMealDateEdit.Text = string.Empty;
+            txtDeliveredEdit.Text = string.Empty;
+            txtDamagedIncompleteEdit.Text = string.Empty;
+            HiddenMealID.Value = string.Empty;
+            txtFirstsCountEdit.Text = string.Empty;
+            txtSecondsCountEdit.Text = string.Empty;
+            txtAdultsCountEdit.Text = string.Empty;
+
             FillGrid();
             Panel1.Visible = false;
         }
@@ -745,6 +850,24 @@ namespace GIBS.Modules.MealTracker
                         txtFirstsCountEdit.Text = item.FirstsCount.ToString();
                         txtSecondsCountEdit.Text = item.SecondsCount.ToString();
                         txtAdultsCountEdit.Text =   item.Adults.ToString();
+                        txtDamagedIncompleteEdit.Text = item.DamagedIncomplete.ToString();
+                        // ddlDeliveryTimeEdit.SelectedValue = item.DeliveryTime.ToString();
+                        if (item.DeliveryTime.ToString().Length > 0)
+                        {
+                            ListItem lisource = ddlDeliveryTimeEdit.Items.FindByValue(item.DeliveryTime);
+                            if (lisource != null)
+                            {
+                                // value found - select it
+                                ddlDeliveryTimeEdit.SelectedValue = item.DeliveryTime;
+                            }
+                            else
+                            {
+                                //Value not found - add it and then select it
+                                ddlDeliveryTimeEdit.Items.Insert(1, new ListItem(item.DeliveryTime, item.DeliveryTime));
+                                ddlDeliveryTimeEdit.SelectedValue = item.DeliveryTime;
+                            }
+                        }
+
                     }
                 }
                 // Do whatever operation you want.  

@@ -141,6 +141,24 @@
   <data name="lblAdultsWeds.Text" xml:space="preserve">
     <value>Adults</value>
   </data>
+  <data name="lblDamagedIncomplete.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="lblDamagedIncompleteEdit.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="lblDamagedIncompleteFri.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="lblDamagedIncompleteThurs.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="lblDamagedIncompleteTues.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
+  <data name="lblDamagedIncompleteWeds.Text" xml:space="preserve">
+    <value>Damaged</value>
+  </data>
   <data name="lblDelivered.Text" xml:space="preserve">
     <value>Delivered</value>
   </data>
@@ -158,6 +176,24 @@
   </data>
   <data name="lblDeliveredWeds.Text" xml:space="preserve">
     <value>Delivered</value>
+  </data>
+  <data name="lblDeliveryTime.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
+  </data>
+  <data name="lblDeliveryTimeEdit.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
+  </data>
+  <data name="lblDeliveryTimeFri.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
+  </data>
+  <data name="lblDeliveryTimeThurs.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
+  </data>
+  <data name="lblDeliveryTimeTues.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
+  </data>
+  <data name="lblDeliveryTimeWeds.Text" xml:space="preserve">
+    <value>Delivery&amp;nbsp;Time</value>
   </data>
   <data name="lblDeseCbx.Text" xml:space="preserve">
     <value>DESE</value>

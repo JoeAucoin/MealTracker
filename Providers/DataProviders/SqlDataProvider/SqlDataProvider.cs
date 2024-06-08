@@ -181,6 +181,8 @@ namespace GIBS.Modules.MealTracker.Data
                 , new SqlParameter("@PortalID", mi.MTPortalID)
                 , new SqlParameter("@Adults", mi.Adults)
                 , new SqlParameter("@DESE", mi.DESE)
+                , new SqlParameter("@DeliveryTime", mi.DeliveryTime)
+                , new SqlParameter("@DamagedIncomplete", mi.DamagedIncomplete)
                 ));
         }
 
@@ -193,6 +195,8 @@ namespace GIBS.Modules.MealTracker.Data
                 , new SqlParameter("@SecondsCount", mi.SecondsCount)
                 , new SqlParameter("@MealID", mi.MealID)
                 , new SqlParameter("@Adults", mi.Adults)
+                , new SqlParameter("@DeliveryTime", mi.DeliveryTime)
+                , new SqlParameter("@DamagedIncomplete", mi.DamagedIncomplete)
                 );
         }
 

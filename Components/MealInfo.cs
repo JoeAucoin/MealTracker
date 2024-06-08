@@ -22,6 +22,10 @@ namespace GIBS.Modules.MealTracker.Components
         public int SecondsCount { get; set; }
         public int Adults { get; set; }
         public int LeftOvers { get; set; }
+
+        public int DamagedIncomplete { get; set; }
+        public string DeliveryTime { get; set; }
+
         public int LocationID { get; set; }
         public string LocationCode { get; set; }
         public string LocationCodeSearchName { get; set; }

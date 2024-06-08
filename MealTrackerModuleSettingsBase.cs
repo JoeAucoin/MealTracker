@@ -61,5 +61,50 @@ namespace GIBS.Modules.MealTracker
             }
         }
 
+        public string DeliveryStartTime
+        {
+            get
+            {
+                if (Settings.Contains("deliveryStartTime"))
+                    return Settings["deliveryStartTime"].ToString();
+                return "10:00 AM";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "deliveryStartTime", value.ToString());
+            }
+        }
+
+        public string DeliveryEndTime
+        {
+            get
+            {
+                if (Settings.Contains("deliveryEndTime"))
+                    return Settings["deliveryEndTime"].ToString();
+                return "02:00 PM";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "deliveryEndTime", value.ToString());
+            }
+        }
+
+        public string DeliveryInterval
+        {
+            get
+            {
+                if (Settings.Contains("deliveryInterval"))
+                    return Settings["deliveryInterval"].ToString();
+                return "15";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateTabModuleSetting(TabModuleId, "deliveryInterval", value.ToString());
+            }
+        }
+
     }
 }

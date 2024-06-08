@@ -101,7 +101,7 @@
 	
 	    <asp:DropDownList ID="ddlLocationID" runat="server" CssClass="form-control input-lg" OnSelectedIndexChanged="ddlLocationID_SelectedIndexChanged" AutoPostBack="true">
     </asp:DropDownList>	
-	<asp:RequiredFieldValidator runat="server" id="reqLocationID" controltovalidate="ddlLocationID" Display="Dynamic" errormessage="Required!" resourcekey="reqSchoolLocation" CssClass="NormalRed" />
+	<asp:RequiredFieldValidator runat="server" id="reqLocationID" controltovalidate="ddlLocationID" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqSchoolLocation" CssClass="NormalRed" />
             
             </div>	
             
@@ -124,21 +124,36 @@
 			<asp:TextBox ID="txtMealDate" runat="server" MaxLength="10" AutoCompleteType="Disabled" ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="reqMealDate" resourcekey="reqMealDate" controltovalidate="txtMealDate" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+
+                <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+            
+            <dnn:label id="lblDeliveryTime" runat="server" controlname="ddlDeliveryTime" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTime" runat="server" CssClass="form-control input-lg">
+                 
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTime" controltovalidate="ddlDeliveryTime" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTime" CssClass="NormalRed" />
+            
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1">
             
             <dnn:label id="lblDelivered" runat="server" controlname="txtDelivered" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDelivered" runat="server" onchange="javascript:myCopyFunction();" ClientIDMode="Static" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDelivered" controltovalidate="txtDelivered" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />
             
             </div>
-        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2"><dnn:label id="lblFirstsCount" runat="server" controlname="txtFirstsCount" suffix=":" />
+			        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncomplete" runat="server" controlname="txtDamagedIncomplete" suffix=":" />
+	<asp:TextBox ID="txtDamagedIncomplete" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncomplete" controltovalidate="txtDamagedIncomplete" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncomplete" CssClass="NormalRed" />
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblFirstsCount" runat="server" controlname="txtFirstsCount" suffix=":" />
 	<asp:TextBox ID="txtFirstsCount" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqFirstsCount" controltovalidate="txtFirstsCount" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCount" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2"><dnn:label id="lblSecondsCount" runat="server" controlname="txtSecondsCount" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblSecondsCount" runat="server" controlname="txtSecondsCount" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCount" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqSecondsCount" controltovalidate="txtSecondsCount" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCount" CssClass="NormalRed" />
             </div>
-         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblAdults" runat="server" controlname="txtAdults" suffix=":" CssClass="control-label" />
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdults" runat="server" controlname="txtAdults" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdults" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdults" controltovalidate="txtAdults" errormessage="Required!" Display="Dynamic" resourcekey="reqAdults" CssClass="NormalRed" />
             </div>
@@ -152,22 +167,38 @@
 			<asp:TextBox ID="txtMealDateTues" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator1" resourcekey="reqMealDate" controltovalidate="txtMealDateTues" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2">
+
+                <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+            
+            <dnn:label id="lblDeliveryTimeTues" runat="server" controlname="ddlDeliveryTimeTues" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTimeTues" runat="server" CssClass="form-control input-lg">
+                 
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeTues" controltovalidate="ddlDeliveryTimeTues" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeTues" CssClass="NormalRed" />
+            
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
             <dnn:label id="lblDeliveredTues" runat="server" controlname="txtDeliveredTues" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDeliveredTues" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDeliveredTues" controltovalidate="txtDeliveredTues" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveredTues" CssClass="NormalRed" />
             
             </div>
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblFirstsCountTues" runat="server" controlname="txtFirstsCountTues" suffix=":" />
+
+		<div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteTues" runat="server" controlname="txtDamagedIncompleteTues" suffix=":" />
+		<asp:TextBox ID="txtDamagedIncompleteTues" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteTues" controltovalidate="txtDamagedIncompleteTues" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteTues" CssClass="NormalRed" />
+		</div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountTues" runat="server" controlname="txtFirstsCountTues" suffix=":" />
 	<asp:TextBox ID="txtFirstsCountTues" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqFirstsCountTues" controltovalidate="txtFirstsCountTues" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCountTues" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblSecondsCountTues" runat="server" controlname="txtSecondsCountTues" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountTues" runat="server" controlname="txtSecondsCountTues" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCountTues" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqSecondsCountTues" controltovalidate="txtSecondsCountTues" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCountTues" CssClass="NormalRed" />
             </div>
  
-                    <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblAdultsTues" runat="server" controlname="txtAdultsTues" suffix=":" CssClass="control-label" />
+                    <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdultsTues" runat="server" controlname="txtAdultsTues" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsTues" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsTues" controltovalidate="txtAdultsTues" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsTues" CssClass="NormalRed" />
             </div>
@@ -178,26 +209,41 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateWeds" runat="server" controlname="txtMealDateWeds" suffix=":" for="txtMealDateWeds" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateWeds" runat="server" controlname="txtMealDateWeds" suffix=":" for="txtMealDateWeds" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateWeds" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator2" resourcekey="reqMealDate" controltovalidate="txtMealDateWeds" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
+
+                <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+            
+            <dnn:label id="lblDeliveryTimeWeds" runat="server" controlname="ddlDeliveryTimeWeds" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTimeWeds" runat="server" CssClass="form-control input-lg">     
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator9" controltovalidate="ddlDeliveryTimeWeds" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeTues" CssClass="NormalRed" />
+            
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
             <dnn:label id="lblDeliveredWeds" runat="server" controlname="txtDeliveredWeds" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDeliveredWeds" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDeliveredWeds" controltovalidate="txtDeliveredWeds" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveredWeds" CssClass="NormalRed" />
             
             </div>
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblFirstsCountWeds" runat="server" controlname="txtFirstsCountWeds" suffix=":" />
+
+		<div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteWeds" runat="server" controlname="txtDamagedIncompleteWeds" suffix=":" />
+		<asp:TextBox ID="txtDamagedIncompleteWeds" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteWeds" controltovalidate="txtDamagedIncompleteWeds" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteWeds" CssClass="NormalRed" />
+		</div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountWeds" runat="server" controlname="txtFirstsCountWeds" suffix=":" />
 	<asp:TextBox ID="txtFirstsCountWeds" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqFirstsCountWeds" controltovalidate="txtFirstsCountWeds" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCountWeds" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblSecondsCountWeds" runat="server" controlname="txtSecondsCountWeds" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountWeds" runat="server" controlname="txtSecondsCountWeds" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCountWeds" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqSecondsCountWeds" controltovalidate="txtSecondsCountWeds" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCountWeds" CssClass="NormalRed" />
             </div>
  
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblAdultsWeds" runat="server" controlname="txtAdultsWeds" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdultsWeds" runat="server" controlname="txtAdultsWeds" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsWeds" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsWeds" controltovalidate="txtAdultsWeds" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsWeds" CssClass="NormalRed" />
             </div>
@@ -208,26 +254,42 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateThurs" runat="server" controlname="txtMealDateThurs" suffix=":" for="txtMealDateThurs" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateThurs" runat="server" controlname="txtMealDateThurs" suffix=":" for="txtMealDateThurs" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateThurs" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator3" resourcekey="reqMealDate" controltovalidate="txtMealDateThurs" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
+
+                <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+            
+            <dnn:label id="lblDeliveryTimeThurs" runat="server" controlname="ddlDeliveryTimeThurs" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTimeThurs" runat="server" CssClass="form-control input-lg">
+                 
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeThurs" controltovalidate="ddlDeliveryTimeThurs" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeThurs" CssClass="NormalRed" />
+            
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
             <dnn:label id="lblDeliveredThurs" runat="server" controlname="txtDeliveredThurs" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDeliveredThurs" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDeliveredThurs" controltovalidate="txtDeliveredThurs" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveredThurs" CssClass="NormalRed" />
             
             </div>
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblFirstsCountThurs" runat="server" controlname="txtFirstsCountThurs" suffix=":" />
+
+		<div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteThurs" runat="server" controlname="txtDamagedIncompleteThurs" suffix=":" />
+		<asp:TextBox ID="txtDamagedIncompleteThurs" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteThurs" controltovalidate="txtDamagedIncompleteThurs" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteThurs" CssClass="NormalRed" />
+		</div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountThurs" runat="server" controlname="txtFirstsCountThurs" suffix=":" />
 	<asp:TextBox ID="txtFirstsCountThurs" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqFirstsCountThurs" controltovalidate="txtFirstsCountThurs" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCountThurs" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblSecondsCountThurs" runat="server" controlname="txtSecondsCountThurs" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountThurs" runat="server" controlname="txtSecondsCountThurs" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCountThurs" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqSecondsCountThurs" controltovalidate="txtSecondsCountThurs" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCountThurs" CssClass="NormalRed" />
             </div>
  
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblAdultsThurs" runat="server" controlname="txtAdultsThurs" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdultsThurs" runat="server" controlname="txtAdultsThurs" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsThurs" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsThurs" controltovalidate="txtAdultsThurs" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsThurs" CssClass="NormalRed" />
             </div>
@@ -239,26 +301,42 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-3 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateFri" runat="server" controlname="txtMealDateFri" suffix=":" for="txtMealDateFri" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateFri" runat="server" controlname="txtMealDateFri" suffix=":" for="txtMealDateFri" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateFri" runat="server" MaxLength="10"  ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator4" resourcekey="reqMealDate" controltovalidate="txtMealDateFri" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+                <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">
+            
+            <dnn:label id="lblDeliveryTimeFri" runat="server" controlname="ddlDeliveryTimeFri" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTimeFri" runat="server" CssClass="form-control input-lg">
+                 
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeFri" controltovalidate="ddlDeliveryTimeFri" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeFri" CssClass="NormalRed" />
+            
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
             <dnn:label id="lblDeliveredFri" runat="server" controlname="txtDeliveredFri" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDeliveredFri" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDeliveredFri" controltovalidate="txtDeliveredFri" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveredFri" CssClass="NormalRed" />
             
             </div>
-        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblFirstsCountFri" runat="server" controlname="txtFirstsCountFri" suffix=":" />
+
+		<div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteFri" runat="server" controlname="txtDamagedIncompleteFri" suffix=":" />
+		<asp:TextBox ID="txtDamagedIncompleteFri" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteFri" controltovalidate="txtDamagedIncompleteFri" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteFri" CssClass="NormalRed" />
+		</div>
+
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountFri" runat="server" controlname="txtFirstsCountFri" suffix=":" />
 	<asp:TextBox ID="txtFirstsCountFri" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqFirstsCountFri" controltovalidate="txtFirstsCountFri" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCountFri" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblSecondsCountFri" runat="server" controlname="txtSecondsCountFri" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountFri" runat="server" controlname="txtSecondsCountFri" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCountFri" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqSecondsCountFri" controltovalidate="txtSecondsCountFri" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCountFri" CssClass="NormalRed" />
             </div>
  
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblAdultsFri" runat="server" controlname="txtAdultsFri" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdultsFri" runat="server" controlname="txtAdultsFri" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsFri" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsFri" controltovalidate="txtAdultsFri" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsFri" CssClass="NormalRed" />
             </div>	
@@ -327,25 +405,36 @@
 			<asp:TextBox ID="txtMealDateEdit" runat="server" MaxLength="10" ReadOnly="true" ValidationGroup="MealUpdate" AutoCompleteType="Disabled" ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator5" resourcekey="reqMealDate" controltovalidate="txtMealDateEdit" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
-        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2">
-            
-            <dnn:label id="lblDeliveredEdit" runat="server" controlname="txtDeliveredEdit" suffix=":" CssClass="control-label" />
-	<asp:TextBox ID="txtDeliveredEdit" runat="server" ValidationGroup="MealUpdate" onchange="javascript:myCopyFunction();" ClientIDMode="Static" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtDeliveredEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />
-            
+
+           <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2">     
+            <dnn:label id="lblDeliveryTimeEdit" runat="server" controlname="ddlDeliveryTimeEdit" suffix=":" CssClass="control-label" />
+			 <asp:DropDownList ID="ddlDeliveryTimeEdit" runat="server" CssClass="form-control input-lg" ValidationGroup="MealUpdate">
+			 </asp:DropDownList>
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeEdit" controltovalidate="ddlDeliveryTimeEdit" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeEdit" CssClass="NormalRed" />         
             </div>
-        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2"><dnn:label id="lblFirstsCountEdit" runat="server" controlname="txtFirstsCountEdit" suffix=":" />
+
+        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
+            <dnn:label id="lblDeliveredEdit" runat="server" controlname="txtDeliveredEdit" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtDeliveredEdit" runat="server" ValidationGroup="MealUpdate" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtDeliveredEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />   
+            </div>
+
+			        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteEdit" runat="server" controlname="txtDamagedIncompleteEdit" suffix=":" />
+	<asp:TextBox ID="txtDamagedIncompleteEdit" runat="server" type="number" pattern="\d*" ValidationGroup="MealUpdate" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteEdit" controltovalidate="txtDamagedIncompleteEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteEdit" CssClass="NormalRed" />
+            </div>
+
+        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountEdit" runat="server" controlname="txtFirstsCountEdit" suffix=":" />
 	<asp:TextBox ID="txtFirstsCountEdit" runat="server" type="number" ValidationGroup="MealUpdate" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator7" controltovalidate="txtFirstsCountEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCount" CssClass="NormalRed" />
             </div>
 		
-        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2"><dnn:label id="lblSecondsCountEdit" runat="server" controlname="txtSecondsCountEdit" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountEdit" runat="server" controlname="txtSecondsCountEdit" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtSecondsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator8" controltovalidate="txtSecondsCountEdit" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCount" CssClass="NormalRed" />
             </div>
-        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2"><dnn:label id="lblAdultsCountEdit" runat="server" controlname="txtAdultsCountEdit" suffix=":" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblAdultsCountEdit" runat="server" controlname="txtAdultsCountEdit" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidatorAdultsEdit" controltovalidate="txtAdultsCountEdit" errormessage="Required!" Display="Dynamic" resourcekey="RequiredFieldValidatorAdultsEdit" CssClass="NormalRed" />
             </div>	
-	<div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2">
+	<div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
 	 <asp:LinkButton ID="lbUpdateMeal" runat="server" resourcekey="lbUpdateMeal" OnClick="lbUpdateMeal_Click" ValidationGroup="MealUpdate" CssClass="btn btn-primary" />
         <asp:LinkButton ID="LinkButtonCancelUpdate" runat="server" CausesValidation="false" resourcekey="LinkButtonCancelUpdate" OnClick="LinkButtonCancelUpdate_Click" CssClass="btn btn-light" />
 	</div>
@@ -388,9 +477,14 @@
         
 
 
-      <asp:BoundField HeaderText="Date" DataField="MealDate" DataFormatString="{0:d}"  ItemStyle-Width="90px">
+      <asp:BoundField HeaderText="Date" DataField="MealDate" DataFormatString="{0:dddd, MM/dd/yyyy}"  ItemStyle-Width="90px">
 <ItemStyle Width="90px"></ItemStyle>
         </asp:BoundField>
+
+        <asp:BoundField HeaderText="Delivery Time" DataField="DeliveryTime" NullDisplayText="" ItemStyle-Width="80px">
+<ItemStyle Width="80px"></ItemStyle>
+        </asp:BoundField>
+
       <asp:BoundField HeaderText="Location" DataField="Location" ItemStyle-Width="170px" />
 
         <asp:BoundField HeaderText="Seating" DataField="Seating" ItemStyle-Width="140px" />
@@ -398,16 +492,21 @@
         <asp:BoundField HeaderText="Delivered" DataField="DeliveredCount" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
 <ItemStyle HorizontalAlign="Center" Width="70px"></ItemStyle>
         </asp:BoundField>
-		<asp:BoundField HeaderText="Firsts" DataField="FirstsCount" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
+
+                <asp:BoundField HeaderText="Damaged" DataField="DamagedIncomplete" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
 <ItemStyle HorizontalAlign="Center" Width="70px"></ItemStyle>
         </asp:BoundField>
-		<asp:BoundField HeaderText="Seconds" DataField="SecondsCount" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
-<ItemStyle HorizontalAlign="Center" Width="80px"></ItemStyle>
+
+		<asp:BoundField HeaderText="Firsts" DataField="FirstsCount" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+<ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>
-<asp:BoundField HeaderText="Adults" DataField="Adults" ItemStyle-Width="70px" ItemStyle-HorizontalAlign="Center">
-<ItemStyle HorizontalAlign="Center" Width="80px"></ItemStyle>
+		<asp:BoundField HeaderText="Seconds" DataField="SecondsCount" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+<ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>
-<asp:CheckBoxField DataField="DESE" HeaderText="DESE" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="60px" />
+<asp:BoundField HeaderText="Adults" DataField="Adults" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+<ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
+        </asp:BoundField>
+<asp:CheckBoxField DataField="DESE" HeaderText="DESE" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="55px" />
         <asp:TemplateField HeaderText="Notes">
             <ItemTemplate>
             <asp:Label ID="lblNotes" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Notes").ToString().TrimEnd() %>'></asp:Label>

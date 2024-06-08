@@ -28,6 +28,24 @@
            
      </div>	
 
+    <div class="dnnFormItem">
+        <dnn:Label runat="server" ID="lblDeliveryStartTime" ControlName="txtDeliveryStartTime" ResourceKey="lblDeliveryStartTime" Suffix=":" />
+        <asp:Textbox ID="txtDeliveryStartTime" runat="server" />
+           
+     </div>	
+
+    <div class="dnnFormItem">
+        <dnn:Label runat="server" ID="lblDeliveryEndTime" ControlName="txtDeliveryEndTime" ResourceKey="lblDeliveryEndTime" Suffix=":" />
+        <asp:Textbox ID="txtDeliveryEndTime" runat="server" />
+           
+     </div>	
+
+    <div class="dnnFormItem">
+        <dnn:Label runat="server" ID="lblDeliveryInterval" ControlName="txtDeliveryInterval" ResourceKey="lblDeliveryInterval" Suffix=":" />
+        <asp:Textbox ID="txtDeliveryInterval" runat="server" />
+           
+     </div>	
+
     </fieldset>
 
 

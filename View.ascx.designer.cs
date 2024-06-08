@@ -150,6 +150,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqMealDate;
 
         /// <summary>
+        /// lblDeliveryTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTime;
+
+        /// <summary>
+        /// ddlDeliveryTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTime;
+
+        /// <summary>
+        /// reqDeliveryTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTime;
+
+        /// <summary>
         /// lblDelivered control.
         /// </summary>
         /// <remarks>
@@ -175,6 +202,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDelivered;
+
+        /// <summary>
+        /// lblDamagedIncomplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncomplete;
+
+        /// <summary>
+        /// txtDamagedIncomplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncomplete;
+
+        /// <summary>
+        /// reqDamagedIncomplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncomplete;
 
         /// <summary>
         /// lblFirstsCount control.
@@ -285,6 +339,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
+        /// lblDeliveryTimeTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTimeTues;
+
+        /// <summary>
+        /// ddlDeliveryTimeTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTimeTues;
+
+        /// <summary>
+        /// reqDeliveryTimeTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeTues;
+
+        /// <summary>
         /// lblDeliveredTues control.
         /// </summary>
         /// <remarks>
@@ -310,6 +391,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveredTues;
+
+        /// <summary>
+        /// lblDamagedIncompleteTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncompleteTues;
+
+        /// <summary>
+        /// txtDamagedIncompleteTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncompleteTues;
+
+        /// <summary>
+        /// reqDamagedIncompleteTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncompleteTues;
 
         /// <summary>
         /// lblFirstsCountTues control.
@@ -420,6 +528,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
+        /// lblDeliveryTimeWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTimeWeds;
+
+        /// <summary>
+        /// ddlDeliveryTimeWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTimeWeds;
+
+        /// <summary>
+        /// RequiredFieldValidator9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+
+        /// <summary>
         /// lblDeliveredWeds control.
         /// </summary>
         /// <remarks>
@@ -445,6 +580,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveredWeds;
+
+        /// <summary>
+        /// lblDamagedIncompleteWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncompleteWeds;
+
+        /// <summary>
+        /// txtDamagedIncompleteWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncompleteWeds;
+
+        /// <summary>
+        /// reqDamagedIncompleteWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncompleteWeds;
 
         /// <summary>
         /// lblFirstsCountWeds control.
@@ -555,6 +717,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
+        /// lblDeliveryTimeThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTimeThurs;
+
+        /// <summary>
+        /// ddlDeliveryTimeThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTimeThurs;
+
+        /// <summary>
+        /// reqDeliveryTimeThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeThurs;
+
+        /// <summary>
         /// lblDeliveredThurs control.
         /// </summary>
         /// <remarks>
@@ -580,6 +769,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveredThurs;
+
+        /// <summary>
+        /// lblDamagedIncompleteThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncompleteThurs;
+
+        /// <summary>
+        /// txtDamagedIncompleteThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncompleteThurs;
+
+        /// <summary>
+        /// reqDamagedIncompleteThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncompleteThurs;
 
         /// <summary>
         /// lblFirstsCountThurs control.
@@ -690,6 +906,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
         /// <summary>
+        /// lblDeliveryTimeFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTimeFri;
+
+        /// <summary>
+        /// ddlDeliveryTimeFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTimeFri;
+
+        /// <summary>
+        /// reqDeliveryTimeFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeFri;
+
+        /// <summary>
         /// lblDeliveredFri control.
         /// </summary>
         /// <remarks>
@@ -715,6 +958,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveredFri;
+
+        /// <summary>
+        /// lblDamagedIncompleteFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncompleteFri;
+
+        /// <summary>
+        /// txtDamagedIncompleteFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncompleteFri;
+
+        /// <summary>
+        /// reqDamagedIncompleteFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncompleteFri;
 
         /// <summary>
         /// lblFirstsCountFri control.
@@ -915,6 +1185,33 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
 
         /// <summary>
+        /// lblDeliveryTimeEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryTimeEdit;
+
+        /// <summary>
+        /// ddlDeliveryTimeEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryTimeEdit;
+
+        /// <summary>
+        /// reqDeliveryTimeEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeEdit;
+
+        /// <summary>
         /// lblDeliveredEdit control.
         /// </summary>
         /// <remarks>
@@ -940,6 +1237,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+
+        /// <summary>
+        /// lblDamagedIncompleteEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDamagedIncompleteEdit;
+
+        /// <summary>
+        /// txtDamagedIncompleteEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDamagedIncompleteEdit;
+
+        /// <summary>
+        /// reqDamagedIncompleteEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDamagedIncompleteEdit;
 
         /// <summary>
         /// lblFirstsCountEdit control.
