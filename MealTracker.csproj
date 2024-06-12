@@ -170,7 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_LocalResources\Edit.ascx.resx" />
-    <Content Include="App_LocalResources\Settings.ascx.resx" />
+    <Content Include="App_LocalResources\Settings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Providers\DataProviders\SqlDataProvider\00.00.01.SqlDataProvider" />
@@ -188,6 +190,7 @@
     <Content Include="Providers\DataProviders\SqlDataProvider\00.00.14.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\00.00.15.SqlDataProvider" />
     <Content Include="Providers\DataProviders\SqlDataProvider\00.00.17.SqlDataProvider" />
+    <Content Include="Providers\DataProviders\SqlDataProvider\00.00.20.SqlDataProvider" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

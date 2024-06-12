@@ -120,6 +120,15 @@
   <data name="ControlTitle_settings.Text" xml:space="preserve">
     <value>MealTracker Settings</value>
   </data>
+  <data name="lblDeliveryEndTime.Text" xml:space="preserve">
+    <value>Delivery End Time</value>
+  </data>
+  <data name="lblDeliveryInterval.Text" xml:space="preserve">
+    <value>Delivery Interval</value>
+  </data>
+  <data name="lblDeliveryStartTime.Text" xml:space="preserve">
+    <value>Delivery Start Time</value>
+  </data>
   <data name="lbljQueryUI.Text" xml:space="preserve">
     <value>jQueryUI Stylesheet</value>
   </data>
@@ -127,15 +136,6 @@
     <value>Locations List</value>
   </data>
   <data name="lblSeatingList.Text" xml:space="preserve">
-    <value>Seating List</value>
-  </data>
-  <data name="lblSetting1.Text" xml:space="preserve">
-    <value>Setting One</value>
-  </data>
-  <data name="lblSetting2.Help" xml:space="preserve">
-    <value>Put your value for Setting 2 here.</value>
-  </data>
-  <data name="lblSetting2.Text" xml:space="preserve">
-    <value>Setting Two</value>
+    <value>Seating/Meal List</value>
   </data>
 </root>

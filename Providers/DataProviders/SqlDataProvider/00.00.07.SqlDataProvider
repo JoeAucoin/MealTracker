@@ -1,12 +1,22 @@
 ﻿
-
-ALTER TABLE GIBS_MealTracker ALTER COLUMN Location nvarchar(60) NULL;
-
+  IF COL_LENGTH('GIBS_MealTracker','Location') IS NULL
+ BEGIN
+  /*  COLUMN DOES NOT EXIST  */
+ Alter TABLE [dbo].[GIBS_MealTracker]
+ADD Location nvarchar(60) NULL
+ END
 GO
 
-ALTER TABLE GIBS_MealTracker ADD LocationID INT NOT NULL DEFAULT(0);
 
+  IF COL_LENGTH('GIBS_MealTracker','LocationID') IS NULL
+ BEGIN
+  /*  COLUMN DOES NOT EXIST  */
+ Alter TABLE [dbo].[GIBS_MealTracker]
+ADD LocationID INT NOT NULL DEFAULT(0)
+ END
 GO
+
+
 
 
 

@@ -410,7 +410,7 @@
             <dnn:label id="lblDeliveryTimeEdit" runat="server" controlname="ddlDeliveryTimeEdit" suffix=":" CssClass="control-label" />
 			 <asp:DropDownList ID="ddlDeliveryTimeEdit" runat="server" CssClass="form-control input-lg" ValidationGroup="MealUpdate">
 			 </asp:DropDownList>
-	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeEdit" controltovalidate="ddlDeliveryTimeEdit" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeEdit" CssClass="NormalRed" />         
+	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeEdit" controltovalidate="ddlDeliveryTimeEdit" ValidationGroup="MealUpdate" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeEdit" CssClass="NormalRed" />         
             </div>
 
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
@@ -472,9 +472,6 @@
 
 <ItemStyle Width="20px"></ItemStyle>
        </asp:TemplateField>
-
-        
-        
 
 
       <asp:BoundField HeaderText="Date" DataField="MealDate" DataFormatString="{0:dddd, MM/dd/yyyy}"  ItemStyle-Width="90px">

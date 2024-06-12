@@ -83,6 +83,9 @@ namespace GIBS.Modules.MealTracker.Data
         public abstract IDataReader MealTracker_GetLocationTowns(string isActive);
         public abstract IDataReader MealTracker_GetLocationCodeSearchNames();
         public abstract IDataReader MealTracker_Get(int locationID, int portalID);
+
+        public abstract IDataReader MealTracker_GetLite(int locationID, int portalID, string startDate, string endDate);
+
         public abstract IDataReader MealTracker_Report(string location, string startDate, string endDate, int portalID, string city, string locationCode);
         public abstract IDataReader MealTracker_ReportSummary(string location, string startDate, string endDate, int portalID, string city, string locationCode);
         ////    public abstract IDataReader MealTracker_GetMeal(int mealID);

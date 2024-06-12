@@ -55,6 +55,14 @@ namespace GIBS.Modules.MealTracker.Components
 
         }
 
+        public static List<MealInfo> GetAllMealsLite(int locationID, int portalID, string startDate, string endDate)
+
+        {   //todo: look at caching
+
+            return CBO.FillCollection<MealInfo>(DataProvider.Instance().MealTracker_GetLite(locationID, portalID, startDate, endDate));
+
+        }
+
         public static List<MealInfo> Report(string location, string startDate, string endDate, int portalID, string city, string locationCode)
 
         {   //todo: look at caching

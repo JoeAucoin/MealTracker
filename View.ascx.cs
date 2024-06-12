@@ -380,6 +380,10 @@ namespace GIBS.Modules.MealTracker
                     {
                         _notes = "";
                     }
+
+                    PortalSecurity cleanup = new PortalSecurity();
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
                     mi = new MealInfo
 
                     {
@@ -417,6 +421,10 @@ namespace GIBS.Modules.MealTracker
                     {
                         _notes = "";
                     }
+
+                    PortalSecurity cleanup = new PortalSecurity();
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
                     MealInfo miTues;
                     miTues = new MealInfo
 
@@ -454,6 +462,10 @@ namespace GIBS.Modules.MealTracker
                     {
                         _notes = "";
                     }
+
+                    PortalSecurity cleanup = new PortalSecurity();
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
                     MealInfo miWeds;
                     miWeds = new MealInfo
 
@@ -491,6 +503,10 @@ namespace GIBS.Modules.MealTracker
                     {
                         _notes = "";
                     }
+
+                    PortalSecurity cleanup = new PortalSecurity();
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
                     MealInfo miThurs;
                     miThurs = new MealInfo
 
@@ -529,6 +545,11 @@ namespace GIBS.Modules.MealTracker
                     {
                         _notes = "";
                     }
+
+                    PortalSecurity cleanup = new PortalSecurity();
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
                     MealInfo miFri;
                     miFri = new MealInfo
 

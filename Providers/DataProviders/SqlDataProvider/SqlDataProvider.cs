@@ -154,6 +154,11 @@ namespace GIBS.Modules.MealTracker.Data
             return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Get", locationID, portalID);
         }
 
+        public override IDataReader MealTracker_GetLite(int locationID, int portalID, string startDate, string endDate)
+        {
+            return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_GetLite", locationID, portalID, startDate, endDate);
+        }
+
         public override IDataReader MealTracker_Report(string location, string startDate, string endDate, int portalID, string city, string locationCode)
         {
             return SqlHelper.ExecuteReader(ConnectionString, NamePrefix + "MealTracker_Report", location, startDate, endDate, portalID, city, locationCode);

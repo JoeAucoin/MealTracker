@@ -15,7 +15,7 @@
      </div>	
 
 
-	<div class="dnnFormItem">
+	<div class="dnnFormItem" style="display:none;">
         <dnn:Label runat="server" ID="lblLocationsList" ControlName="Locations" ResourceKey="lblLocationsList" Suffix=":" />
         <asp:DropDownList ID="ddlLocationList" runat="server" CssClass="form-control input-lg">
     </asp:DropDownList>	
