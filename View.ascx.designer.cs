@@ -312,6 +312,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdults;
 
         /// <summary>
+        /// lblShort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShort;
+
+        /// <summary>
+        /// txtShort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShort;
+
+        /// <summary>
         /// lblMealDateTues control.
         /// </summary>
         /// <remarks>
@@ -499,6 +517,24 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdultsTues;
+
+        /// <summary>
+        /// lblShortTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShortTues;
+
+        /// <summary>
+        /// txtShortTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortTues;
 
         /// <summary>
         /// lblMealDateWeds control.
@@ -690,6 +726,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdultsWeds;
 
         /// <summary>
+        /// lblShortWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShortWeds;
+
+        /// <summary>
+        /// txtShortWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortWeds;
+
+        /// <summary>
         /// lblMealDateThurs control.
         /// </summary>
         /// <remarks>
@@ -879,6 +933,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdultsThurs;
 
         /// <summary>
+        /// lblShortThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShortThurs;
+
+        /// <summary>
+        /// txtShortThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortThurs;
+
+        /// <summary>
         /// lblMealDateFri control.
         /// </summary>
         /// <remarks>
@@ -1066,6 +1138,24 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqAdultsFri;
+
+        /// <summary>
+        /// lblShortFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShortFri;
+
+        /// <summary>
+        /// txtShortFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortFri;
 
         /// <summary>
         /// lblMealNotes control.
@@ -1347,6 +1437,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAdultsEdit;
 
         /// <summary>
+        /// lblShortEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblShortEdit;
+
+        /// <summary>
+        /// txtShortEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortEdit;
+
+        /// <summary>
         /// lbUpdateMeal control.
         /// </summary>
         /// <remarks>
@@ -1363,6 +1471,24 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButtonCancelUpdate;
+
+        /// <summary>
+        /// lblNotedEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblNotedEdit;
+
+        /// <summary>
+        /// txtNotesEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNotesEdit;
 
         /// <summary>
         /// GridView1 control.

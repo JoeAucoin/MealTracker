@@ -167,6 +167,25 @@
          </FooterTemplate>
      </asp:TemplateField>
 
+                  <asp:TemplateField HeaderText="LeftOvers" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+         <ItemTemplate>
+         <asp:Label ID="lblLeftOvers" runat="server" Text='<%# Eval("LeftOvers") %>'/>
+         </ItemTemplate>
+         <FooterTemplate>
+         <asp:Label ID="lblLeftOvers" runat="server"></asp:Label>
+         </FooterTemplate>
+     </asp:TemplateField>
+
+                  <asp:TemplateField HeaderText="Short" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+         <ItemTemplate>
+         <asp:Label ID="lblShort" runat="server" Text='<%# Eval("Short") %>'/>
+         </ItemTemplate>
+         <FooterTemplate>
+         <asp:Label ID="lblShort" runat="server"></asp:Label>
+         </FooterTemplate>
+     </asp:TemplateField>
+
+
       <asp:TemplateField HeaderText="Service Days" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
          <ItemTemplate>
          <asp:Label ID="lblServiceDays" runat="server" Text='<%# Eval("ServiceDays") %>'/>
@@ -209,6 +228,8 @@
 		<asp:BoundField HeaderText="Seconds" DataField="SecondsCount" SortExpression="SecondsCount" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="Total Served" DataField="TotalMealsCount" Visible="true" SortExpression="TotalMealsCount" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="Adults" DataField="Adults" SortExpression="Adults" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+        <asp:BoundField HeaderText="LeftOvers" DataField="LeftOvers" SortExpression="LeftOvers" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+        <asp:BoundField HeaderText="Short" DataField="Short" SortExpression="Short" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
 
     </Columns>
 </asp:GridView>	

@@ -240,6 +240,9 @@
   <data name="lblNoteDays.Text" xml:space="preserve">
     <value>Add to</value>
   </data>
+  <data name="lblNotedEdit.Text" xml:space="preserve">
+    <value>Notes</value>
+  </data>
   <data name="lbLocations.Text" xml:space="preserve">
     <value>Programs</value>
   </data>
@@ -266,6 +269,24 @@
   </data>
   <data name="lblSecondsCountWeds.Text" xml:space="preserve">
     <value>Seconds</value>
+  </data>
+  <data name="lblShort.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="lblShortEdit.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="lblShortFri.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="lblShortThurs.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="lblShortTues.Text" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="lblShortWeds.Text" xml:space="preserve">
+    <value>Short</value>
   </data>
   <data name="lbReport.Text" xml:space="preserve">
     <value>Reporting</value>

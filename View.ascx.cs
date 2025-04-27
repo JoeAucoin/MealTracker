@@ -309,6 +309,8 @@ namespace GIBS.Modules.MealTracker
                 txtFirstsCountEdit.Text = item.FirstsCount.ToString();
                 txtSecondsCountEdit.Text = item.SecondsCount.ToString();
                 txtAdultsCountEdit.Text = item.Adults.ToString();
+                txtNotesEdit.Text = item.Notes.ToString();
+                txtShortEdit.Text = item.Short.ToString();
             }
 
         }
@@ -402,6 +404,7 @@ namespace GIBS.Modules.MealTracker
                         DESE = CheckBoxDESE.Checked
                         , DeliveryTime = txtMealDate.Text.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
                         , DamagedIncomplete = Int32.Parse(txtDamagedIncomplete.Text.ToString())
+                        , Short = Convert.ToInt32(txtShort.Text.ToString())
 
                     };
 
@@ -446,6 +449,8 @@ namespace GIBS.Modules.MealTracker
                         DeliveryTime = txtMealDateTues.Text.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteTues.Text.ToString())
+                        ,
+                        Short = Convert.ToInt32(txtShortTues.Text.ToString())
 
                     };
 
@@ -487,6 +492,8 @@ namespace GIBS.Modules.MealTracker
                         DeliveryTime = txtMealDateWeds.Text.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteWeds.Text.ToString())
+                        ,
+                        Short = Convert.ToInt32(txtShortWeds.Text.ToString())
                     };
 
                     miWeds.Save();
@@ -528,6 +535,8 @@ namespace GIBS.Modules.MealTracker
                         DeliveryTime = txtMealDateThurs.Text.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteThurs.Text.ToString())
+                        ,
+                        Short = Convert.ToInt32(txtShortThurs.Text.ToString())
 
                     };
 
@@ -571,6 +580,8 @@ namespace GIBS.Modules.MealTracker
                         DeliveryTime = txtMealDateFri.Text.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteFri.Text.ToString())
+                        ,
+                        Short = Convert.ToInt32(txtShortFri.Text.ToString())
                     };
 
                     miFri.Save();
@@ -618,6 +629,13 @@ namespace GIBS.Modules.MealTracker
                 txtDamagedIncompleteWeds.Text = "0";
                 txtDamagedIncompleteThurs.Text = "0";
                 txtDamagedIncompleteFri.Text = "0";
+
+                txtShort.Text = "0";
+                txtShortTues.Text = "0";
+                txtShortWeds.Text = "0";
+                txtShortThurs.Text = "0";
+                txtShortFri.Text = "0";
+
             }
             catch (Exception ex)
             {
@@ -812,7 +830,10 @@ namespace GIBS.Modules.MealTracker
                 SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()), 
                 Adults = Convert.ToInt32( txtAdultsCountEdit.Text.ToString()),
                 DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
-                DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString()
+                DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString(),
+                Short = Convert.ToInt32(txtShortEdit.Text.ToString()),
+                Notes = txtNotesEdit.Text.ToString()
+
 
             };
 
@@ -826,6 +847,8 @@ namespace GIBS.Modules.MealTracker
             txtFirstsCountEdit.Text = string.Empty;
             txtSecondsCountEdit.Text= string.Empty;
             txtAdultsCountEdit.Text = string.Empty;
+            txtNotesEdit.Text = string.Empty;
+            txtShortEdit.Text = string.Empty;
             FillGrid();
             Panel1.Visible = false;
 
@@ -872,7 +895,10 @@ namespace GIBS.Modules.MealTracker
                         txtSecondsCountEdit.Text = item.SecondsCount.ToString();
                         txtAdultsCountEdit.Text =   item.Adults.ToString();
                         txtDamagedIncompleteEdit.Text = item.DamagedIncomplete.ToString();
-                        // ddlDeliveryTimeEdit.SelectedValue = item.DeliveryTime.ToString();
+                        txtNotesEdit.Text = item.Notes.ToString();
+                        txtShortEdit.Text = item.Short.ToString();
+
+                        
                         if (item.DeliveryTime.ToString().Length > 0)
                         {
                             ListItem lisource = ddlDeliveryTimeEdit.Items.FindByValue(item.DeliveryTime);

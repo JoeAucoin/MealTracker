@@ -158,6 +158,11 @@
 	<asp:RequiredFieldValidator runat="server" id="reqAdults" controltovalidate="txtAdults" errormessage="Required!" Display="Dynamic" resourcekey="reqAdults" CssClass="NormalRed" />
             </div>
 
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblShort" runat="server" controlname="txtShort" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtShort" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	
+            </div>
+
     </div>
 
         <div class="row form">
@@ -203,6 +208,11 @@
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsTues" controltovalidate="txtAdultsTues" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsTues" CssClass="NormalRed" />
             </div>
 
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblShortTues" runat="server" controlname="txtShortTues" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtShortTues" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	
+            </div>	
+
     </div>
 
 
@@ -247,6 +257,11 @@
 	<asp:TextBox ID="txtAdultsWeds" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsWeds" controltovalidate="txtAdultsWeds" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsWeds" CssClass="NormalRed" />
             </div>
+
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblShortWeds" runat="server" controlname="txtShortWeds" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtShortWeds" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	
+            </div>	
 
     </div>
 
@@ -294,6 +309,11 @@
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsThurs" controltovalidate="txtAdultsThurs" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsThurs" CssClass="NormalRed" />
             </div>
 
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblShortThurs" runat="server" controlname="txtShortThurs" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtShortThurs" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	
+            </div>
+
     </div>
 
 
@@ -339,8 +359,12 @@
         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblAdultsFri" runat="server" controlname="txtAdultsFri" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtAdultsFri" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
 	<asp:RequiredFieldValidator runat="server" id="reqAdultsFri" controltovalidate="txtAdultsFri" errormessage="Required!" Display="Dynamic" resourcekey="reqAdultsFri" CssClass="NormalRed" />
+            </div>
+            
+         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1"><dnn:label id="lblShortFri" runat="server" controlname="txtShortFri" suffix=":" CssClass="control-label" />
+	<asp:TextBox ID="txtShortFri" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	
             </div>	
-
     </div>
 
 
@@ -415,31 +439,43 @@
 
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
             <dnn:label id="lblDeliveredEdit" runat="server" controlname="txtDeliveredEdit" suffix=":" CssClass="control-label" />
-	<asp:TextBox ID="txtDeliveredEdit" runat="server" ValidationGroup="MealUpdate" type="number" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtDeliveredEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />   
+	<asp:TextBox ID="txtDeliveredEdit" runat="server" ValidationGroup="MealUpdate" type="number" pattern="\d*" CssClass="form-control" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtDeliveredEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />   
             </div>
 
 			        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblDamagedIncompleteEdit" runat="server" controlname="txtDamagedIncompleteEdit" suffix=":" />
-	<asp:TextBox ID="txtDamagedIncompleteEdit" runat="server" type="number" pattern="\d*" ValidationGroup="MealUpdate" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteEdit" controltovalidate="txtDamagedIncompleteEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteEdit" CssClass="NormalRed" />
+	<asp:TextBox ID="txtDamagedIncompleteEdit" runat="server" type="number" pattern="\d*" ValidationGroup="MealUpdate" CssClass="form-control" /><asp:RequiredFieldValidator runat="server" id="reqDamagedIncompleteEdit" controltovalidate="txtDamagedIncompleteEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDamagedIncompleteEdit" CssClass="NormalRed" />
             </div>
 
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblFirstsCountEdit" runat="server" controlname="txtFirstsCountEdit" suffix=":" />
-	<asp:TextBox ID="txtFirstsCountEdit" runat="server" type="number" ValidationGroup="MealUpdate" pattern="\d*" CssClass="form-control input-lg" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator7" controltovalidate="txtFirstsCountEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCount" CssClass="NormalRed" />
+	<asp:TextBox ID="txtFirstsCountEdit" runat="server" type="number" ValidationGroup="MealUpdate" pattern="\d*" CssClass="form-control" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator7" controltovalidate="txtFirstsCountEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqFirstsCount" CssClass="NormalRed" />
             </div>
 		
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblSecondsCountEdit" runat="server" controlname="txtSecondsCountEdit" suffix=":" CssClass="control-label" />
-	<asp:TextBox ID="txtSecondsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	<asp:TextBox ID="txtSecondsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control" />
 	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator8" controltovalidate="txtSecondsCountEdit" errormessage="Required!" Display="Dynamic" resourcekey="reqSecondsCount" CssClass="NormalRed" />
             </div>
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1"><dnn:label id="lblAdultsCountEdit" runat="server" controlname="txtAdultsCountEdit" suffix=":" CssClass="control-label" />
-	<asp:TextBox ID="txtAdultsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control input-lg" />
+	<asp:TextBox ID="txtAdultsCountEdit" ValidationGroup="MealUpdate" runat="server" type="number" pattern="\d*" CssClass="form-control" />
 	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidatorAdultsEdit" controltovalidate="txtAdultsCountEdit" errormessage="Required!" Display="Dynamic" resourcekey="RequiredFieldValidatorAdultsEdit" CssClass="NormalRed" />
             </div>	
+
+     <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1"><dnn:label id="lblShortEdit" runat="server" controlname="txtShortEdit" suffix=":" CssClass="control-label" />
+<asp:TextBox ID="txtShortEdit" runat="server" Text="0" type="number" pattern="\d*" CssClass="form-control" />
+
+        </div>
+
 	<div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
 	 <asp:LinkButton ID="lbUpdateMeal" runat="server" resourcekey="lbUpdateMeal" OnClick="lbUpdateMeal_Click" ValidationGroup="MealUpdate" CssClass="btn btn-primary" />
         <asp:LinkButton ID="LinkButtonCancelUpdate" runat="server" CausesValidation="false" resourcekey="LinkButtonCancelUpdate" OnClick="LinkButtonCancelUpdate_Click" CssClass="btn btn-light" />
 	</div>
 
     </div>
+
+    <div class="row form">
+       <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7 col-md-offset-1"><dnn:label id="lblNotedEdit" runat="server" controlname="txtNotesEdit" suffix=":" CssClass="control-label" />
+		<asp:TextBox ID="txtNotesEdit" runat="server" TextMode="MultiLine" CssClass="form-control input-lg"></asp:TextBox>      
+        </div> 
+        </div>
 
 
 </asp:Panel>
@@ -501,8 +537,16 @@
 <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>
 <asp:BoundField HeaderText="Adults" DataField="Adults" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+
 <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>
+    <asp:BoundField HeaderText="LeftOvers" DataField="LeftOvers" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+        <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
+    </asp:BoundField>
+<asp:BoundField HeaderText="Short" DataField="Short" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center"> 
+    <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
+</asp:BoundField>
+
 <asp:CheckBoxField DataField="DESE" HeaderText="DESE" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="55px" />
         <asp:TemplateField HeaderText="Notes">
             <ItemTemplate>

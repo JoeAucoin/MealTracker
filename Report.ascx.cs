@@ -36,6 +36,8 @@ namespace GIBS.Modules.MealTracker
         int deliveredtotal = 0;
         int servicedaystotal = 0;
         int adulttotal = 0;
+        int leftoverstotal = 0;
+        int shorttotal = 0;
 
         private GridViewHelper helper;
         // To show custom operations...
@@ -194,16 +196,7 @@ namespace GIBS.Modules.MealTracker
             {
 
                 GridViewHelper helper = new GridViewHelper(this.gv_Report);
-                //string[] cols = new string[2];
-                //cols[0] = "Location";
-                //cols[1] = "Seating";
-                //helper.RegisterGroup(cols, true, true);
-                //   helper.ApplyGroupSort();
-
-
-
-                //GridViewHelper  helper = new GridViewHelper(this.gv_Report);
-                
+                              
                 
                 helper.RegisterGroup("Location", true, true);
                 //helper.RegisterGroup("MonthYear", true, true);
@@ -214,8 +207,8 @@ namespace GIBS.Modules.MealTracker
                 helper.RegisterSummary("SecondsCount", SummaryOperation.Sum, "Location");
                 helper.RegisterSummary("TotalMealsCount", SummaryOperation.Sum, "Location");
                 helper.RegisterSummary("Adults", SummaryOperation.Sum, "Location");
-                //helper.RegisterSummary("SecondsCount", SummaryOperation.Sum, "MonthYear+Seating");
-                //helper.RegisterSummary("TotalMealsCount", SummaryOperation.Sum, "MonthYear+Seating");
+                helper.RegisterSummary("LeftOvers", SummaryOperation.Sum, "Location");
+                helper.RegisterSummary("Short", SummaryOperation.Sum, "Location");
 
 
                 //  helper.RegisterSummary("LocationID", SummaryOperation.Count);
@@ -224,7 +217,8 @@ namespace GIBS.Modules.MealTracker
                 helper.RegisterSummary("SecondsCount", SummaryOperation.Sum);
                 helper.RegisterSummary("TotalMealsCount", SummaryOperation.Sum);
                 helper.RegisterSummary("Adults", SummaryOperation.Sum);
-
+                helper.RegisterSummary("LeftOvers", SummaryOperation.Sum);
+                helper.RegisterSummary("Short", SummaryOperation.Sum);
 
                 //// helper.RegisterGroup("ClientZipCode", true, true);
                 //helper.GroupHeader += new GroupEvent(helper_GroupHeader);
@@ -322,7 +316,10 @@ namespace GIBS.Modules.MealTracker
                     deliveredtotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "DeliveredCount"));
                     servicedaystotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "ServiceDays"));
                     adulttotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Adults"));
-                    //  grdTotal = grdTotal + rowTotal;
+
+                    leftoverstotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "LeftOvers"));
+                    shorttotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Short"));
+
 
                 }
 
@@ -346,6 +343,12 @@ namespace GIBS.Modules.MealTracker
 
                     Label lblAdult = (Label)e.Row.FindControl("lblAdults");
                     lblAdult.Text = adulttotal.ToString();
+
+                    Label lblShort = (Label)e.Row.FindControl("lblShort");
+                    lblShort.Text = shorttotal.ToString();
+
+                    Label lblLeftOvers = (Label)e.Row.FindControl("lblLeftOvers");
+                    lblLeftOvers.Text = leftoverstotal.ToString();
                 }
 
             }
