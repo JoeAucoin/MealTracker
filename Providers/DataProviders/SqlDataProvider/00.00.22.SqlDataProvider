@@ -1,0 +1,420 @@
+﻿
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_ReportSummary]    Script Date: 5/6/2025 8:57:43 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_ReportSummary]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_ReportSummary]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Report]    Script Date: 5/6/2025 8:57:43 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Report]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Report]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetMeal]    Script Date: 5/6/2025 8:57:43 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetMeal]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetMeal]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLite]    Script Date: 5/6/2025 8:57:43 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_GetLite]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_GetLite]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Get]    Script Date: 5/6/2025 8:57:43 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_Get]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_Get]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Get]    Script Date: 5/6/2025 8:57:43 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Get] 
+	-- Add the parameters for the stored procedure here
+@LocationID int,
+@PortalID int
+AS
+BEGIN
+
+Declare @LOCServiceLocation varchar(50)
+
+SET @LOCServiceLocation = @LocationID
+
+if(@LOCServiceLocation = '0' or @LOCServiceLocation is null  or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT        MealID, MealDate, [Location], Seating, DeliveredCount, FirstsCount, SecondsCount, Adults, Notes, DESE, CreatedOnDate, CreatedByUserID,
+	coalesce(DamagedIncomplete, 0) AS DamagedIncomplete, 
+	
+	--FORMAT(DeliveryTime,'hh:mm tt') AS DeliveryTime,
+
+	CASE
+    WHEN MealDate = CAST(CONVERT(VARCHAR,DeliveryTime,110) AS DATE) THEN FORMAT(DeliveryTime,'hh:mm tt')
+   
+    ELSE FORMAT(DeliveryTime,'hh:mm tt') + ' <sup>(1)</sup>'
+END AS DeliveryTime,
+
+	DeliveredCount - coalesce(DamagedIncomplete, 0) - FirstsCount - SecondsCount - Adults AS LeftOvers,
+	COALESCE(Short, 0) AS Short
+	
+	--coalesce(DeliveryTime,null) AS DeliveryTime
+FROM            GIBS_MealTracker 
+where (1 = 1)
+AND (PortalID = @PortalID)
+and  (@LOCServiceLocation is null or [LocationID] = @LOCServiceLocation)
+order by MealDate desc, Seating
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetLite]    Script Date: 5/6/2025 8:57:43 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetLite] 
+	-- Add the parameters for the stored procedure here
+@LocationID int,
+@PortalID int,
+@StartDate varchar(20),
+@EndDate varchar(20)
+
+AS
+BEGIN
+
+Declare @LOCServiceLocation varchar(50)
+
+SET @LOCServiceLocation = @LocationID
+
+if(@LOCServiceLocation = '0' or @LOCServiceLocation is null  or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT        MealID, MealDate, [Location], Seating, DeliveredCount, FirstsCount, SecondsCount, Adults, Notes, DESE, CreatedOnDate, CreatedByUserID,
+	coalesce(DamagedIncomplete, 0) AS DamagedIncomplete, 
+	
+	--FORMAT(DeliveryTime,'hh:mm tt') AS DeliveryTime,
+
+	CASE
+    WHEN MealDate = CAST(CONVERT(VARCHAR,DeliveryTime,110) AS DATE) THEN FORMAT(DeliveryTime,'hh:mm tt')
+   
+    ELSE FORMAT(DeliveryTime,'hh:mm tt') + ' <sup>(1)</sup>'
+END AS DeliveryTime,
+
+	COALESCE(Short, 0) AS Short,
+	--DeliveredCount - FirstsCount - SecondsCount - Adults AS LeftOvers
+	DeliveredCount - coalesce(DamagedIncomplete, 0) - FirstsCount - SecondsCount - Adults AS LeftOvers
+	
+	--coalesce(DeliveryTime,null) AS DeliveryTime
+FROM            GIBS_MealTracker 
+where (1 = 1)
+AND  (MealDate BETWEEN @StartDate AND @EndDate)
+AND (PortalID = @PortalID)
+and  (@LOCServiceLocation is null or [LocationID] = @LOCServiceLocation)
+order by MealDate desc, Seating
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_GetMeal]    Script Date: 5/6/2025 8:57:43 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_GetMeal] 
+	-- Add the parameters for the stored procedure here
+
+@MealID int
+AS
+BEGIN
+
+SELECT [MealID]
+      ,[PortalID]
+      ,[MealDate]
+      ,[Location]
+      ,[Seating]
+      ,[DeliveredCount]
+      ,[FirstsCount]
+      ,[SecondsCount]
+	  ,[Adults]
+	  ,[DESE]
+      ,[Notes]
+      ,[CreatedOnDate]
+      ,[CreatedByUserID]
+      ,[LocationID]
+	  ,COALESCE(Short, 0) AS Short
+
+	,  coalesce(DamagedIncomplete, 0) AS DamagedIncomplete, 
+	
+	FORMAT(DeliveryTime,'hh:mm tt') AS DeliveryTime,
+	 DeliveryTime AS DeliveryDateTime
+
+	--  , DeliveryTime, DamagedIncomplete
+  FROM [dbo].[GIBS_MealTracker]
+where (1 = 1)
+AND (MealID = @MealID)
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_Report]    Script Date: 5/6/2025 8:57:43 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_Report] 
+	-- Add the parameters for the stored procedure here
+@Location varchar(50),
+@StartDate varchar(20),
+@EndDate varchar(20),
+@PortalID int,
+@City varchar(50),
+@LocationCode varchar(20)
+
+AS
+BEGIN
+
+Declare  @LOCStartDate datetime,
+       @LOCEndDate datetime,
+       @LOCPortalID int,
+       @LOCServiceLocation varchar(50),
+	    @LOCCity varchar(50),
+		 @LOCLocationCode varchar(20)
+
+SET @LOCStartDate = @StartDate
+SET @LOCEndDate = @EndDate
+SET @LOCPortalID = @PortalID
+SET @LOCServiceLocation = @Location
+SET @LOCCity = @City
+SET @LOCLocationCode = @LocationCode
+
+if(@LOCLocationCode='0' or @LOCLocationCode is null or @LOCLocationCode = '')
+begin
+	set @LOCLocationCode=null;
+end
+
+if(@LOCCity='0' or @LOCCity is null or @LOCCity = '')
+begin
+	set @LOCCity=null;
+end
+
+if(@LOCServiceLocation='0' or @LOCServiceLocation is null or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+--	SELECT    [LocationID], [Location],   MealDate AS [MealDate],    DeliveredCount,  FirstsCount,
+--  SecondsCount, FirstsCount + SecondsCount AS [TotalMealsCount] 
+--FROM            GIBS_MealTracker 
+
+
+SELECT        GIBS_MealTracker.MealID, 
+			RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)) AS MonthYear,
+
+			  GIBS_MealTracker.MealDate, GIBS_MealTracker.Location, GIBS_MealTracker.Seating, GIBS_MealTracker.DeliveredCount,
+			  
+			  GIBS_MealTracker.FirstsCount, 
+			  GIBS_MealTracker.SecondsCount,  FirstsCount + SecondsCount AS TotalMealsCount , Adults,
+              GIBS_MealTracker.LocationID, GIBS_MealTrackerLocations.City,
+			  coalesce(DamagedIncomplete, 0) AS DamagedIncomplete, 
+	
+--	FORMAT(DeliveryTime,'hh:mm tt') AS DeliveryTime,
+		CASE
+    WHEN MealDate = CAST(CONVERT(VARCHAR,DeliveryTime,110) AS DATE) THEN FORMAT(DeliveryTime,'hh:mm tt')
+   
+    ELSE FORMAT(DeliveryTime,'hh:mm tt') + '*'
+END AS DeliveryTime,
+
+[Notes], GIBS_MealTracker.CreatedOnDate, GIBS_MealTracker.[CreatedByUserID], [DESE], 
+Users.FirstName + ' '  +  Users.LastName AS CreatedBy, Users.Email, GIBS_MealTrackerLocations.LocationCode,
+Short,
+--DeliveredCount - FirstsCount - SecondsCount - Adults AS LeftOvers
+DeliveredCount - coalesce(DamagedIncomplete, 0) - FirstsCount - SecondsCount - Adults AS LeftOvers
+
+FROM            GIBS_MealTracker
+						INNER JOIN
+                         GIBS_MealTrackerLocations ON GIBS_MealTracker.LocationID = GIBS_MealTrackerLocations.LocationID
+						  Left OUTER JOIN
+                         Users ON GIBS_MealTracker.CreatedByUserID = Users.UserID
+
+WHERE (MealDate BETWEEN @StartDate AND @EndDate)
+AND (GIBS_MealTracker.PortalID = @LOCPortalID)
+and  (@LOCLocationCode is null or GIBS_MealTrackerLocations.LocationCode = @LOCLocationCode)
+and  (@LOCServiceLocation is null or GIBS_MealTracker.LocationID = @LOCServiceLocation)
+and  (@LOCCity is null or GIBS_MealTrackerLocations.City = @LOCCity)
+
+ORDER BY [Location] , MealDate, Seating
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_ReportSummary]    Script Date: 5/6/2025 8:57:43 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+
+-- =============================================
+-- =============================================
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_ReportSummary] 
+	-- Add the parameters for the stored procedure here
+@Location varchar(50),
+@StartDate varchar(20),
+@EndDate varchar(20),
+@PortalID int,
+@City varchar(50),
+@LocationCode varchar(20)
+AS
+BEGIN
+
+Declare  @LOCStartDate datetime,
+       @LOCEndDate datetime,
+       @LOCPortalID int,
+       @LOCServiceLocation varchar(50),
+	   @LOCCity varchar(50),
+	   @LOCLocationCode varchar(20)
+
+SET @LOCStartDate = @StartDate
+SET @LOCEndDate = @EndDate
+SET @LOCPortalID = @PortalID
+SET @LOCServiceLocation = @Location
+SET @LOCCity = @City
+SET @LOCLocationCode = @LocationCode
+
+if(@LOCLocationCode='0' or @LOCLocationCode is null or @LOCLocationCode = '')
+begin
+	set @LOCLocationCode=null;
+end
+
+if(@LOCCity='0' or @LOCCity is null or @LOCCity = '')
+begin
+	set @LOCCity=null;
+end
+
+if(@LOCServiceLocation='0' or @LOCServiceLocation is null or @LOCServiceLocation = '')
+begin
+	set @LOCServiceLocation=null;
+end
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+SELECT      
+		
+		RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)) AS MonthYear,
+			--  GIBS_MealTracker.MealDate, 
+			  GIBS_MealTracker.Location, GIBS_MealTracker.Seating,
+			  Sum(GIBS_MealTracker.DeliveredCount) AS DeliveredCount, 
+			  Sum(GIBS_MealTracker.FirstsCount) AS FirstsCount, 
+			   Sum(SecondsCount) AS SecondsCount, 
+			   Sum(Adults) AS Adults,
+			   Sum(FirstsCount + SecondsCount) AS [TotalMealsCount] ,
+			   Count(MealID) AS ServiceDays,
+
+			   Sum(coalesce(Short,0))  AS Short,
+--DeliveredCount - FirstsCount - SecondsCount - Adults AS LeftOvers
+SUM(DeliveredCount - coalesce(DamagedIncomplete, 0) - FirstsCount - SecondsCount - Adults) AS LeftOvers
+			 --  , GIBS_MealTracker.LocationID
+			  --, GIBS_MealTrackerLocations.City
+FROM            GIBS_MealTracker INNER JOIN
+                         GIBS_MealTrackerLocations ON GIBS_MealTracker.LocationID = GIBS_MealTrackerLocations.LocationID
+
+
+
+			WHERE (MealDate BETWEEN @StartDate AND @EndDate)
+			AND (GIBS_MealTracker.PortalID = @PortalID)
+			
+			and  (@LOCLocationCode is null or GIBS_MealTrackerLocations.LocationCode = @LOCLocationCode)
+			and  (@LOCServiceLocation is null or GIBS_MealTracker.LocationID = @LOCServiceLocation)
+			and  (@LOCCity is null or GIBS_MealTrackerLocations.City = @LOCCity)
+			GROUP BY  GIBS_MealTracker.Location,
+			RIGHT('0' + CAST(MONTH(GIBS_MealTracker.MealDate) AS NVARCHAR(2)), 2)  + '-' +  Cast(DATEPART(YYYY,GIBS_MealTracker.MealDate) AS VARCHAR(4)),
+			GIBS_MealTracker.Seating
+
+--Group by [Location], MealDate 
+ORDER BY [Location] , Seating
+
+
+END
+GO
+
+

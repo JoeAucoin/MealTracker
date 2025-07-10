@@ -54,9 +54,9 @@ namespace GIBS.Modules.MealTracker
         static bool _DESE_Lunch = false;
         static bool _DESE_Snack = false;
         static bool _DESE_Snack_PM = false;
-        public string _DeliveryStartTime = "10:00 AM";
-        public string _DeliveryEndTime = "02:00 PM";
-        public string _DeliveryInterval = "30";
+        public string _DeliveryStartTime = "08:00 AM";
+        public string _DeliveryEndTime = "12:00 PM";
+        public string _DeliveryInterval = "10";
 
         protected override void OnInit(EventArgs e)
         {
@@ -386,6 +386,29 @@ namespace GIBS.Modules.MealTracker
                     PortalSecurity cleanup = new PortalSecurity();
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+                    string mealDate = txtMealDate.Text.ToString();
+                    string deliveredDate = "";
+
+                    if (cbxDeliveryPriorDay.Checked)
+                    {
+                        // First, parse the string into a DateTime object
+                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                        {
+                            // Now, subtract one day using the AddDays() method
+                            DateTime previousDay = originalDate.AddDays(-1);
+
+                            // If you need the result back as a string in a specific format:
+                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                        }
+
+                    }
+                    else
+                    {
+                        deliveredDate = mealDate.ToString();
+                    }
+
                     mi = new MealInfo
 
                     {
@@ -402,7 +425,7 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdults.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
-                        , DeliveryTime = txtMealDate.Text.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
+                        , DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
                         , DamagedIncomplete = Int32.Parse(txtDamagedIncomplete.Text.ToString())
                         , Short = Convert.ToInt32(txtShort.Text.ToString())
 
@@ -428,6 +451,30 @@ namespace GIBS.Modules.MealTracker
                     PortalSecurity cleanup = new PortalSecurity();
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+                    string mealDate = txtMealDateTues.Text.ToString();
+                    string deliveredDate = "";
+
+                    if (cbxDeliveryPriorDayTues.Checked)
+                    {
+                        // First, parse the string into a DateTime object
+                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                        {
+                            // Now, subtract one day using the AddDays() method
+                            DateTime previousDay = originalDate.AddDays(-1);
+
+                            // If you need the result back as a string in a specific format:
+                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                        }
+
+                    }
+                    else
+                    {
+                        deliveredDate = mealDate.ToString();
+                    }
+
+
                     MealInfo miTues;
                     miTues = new MealInfo
 
@@ -446,7 +493,7 @@ namespace GIBS.Modules.MealTracker
                         Adults = Convert.ToInt32(txtAdultsTues.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
                               ,
-                        DeliveryTime = txtMealDateTues.Text.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
+                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteTues.Text.ToString())
                         ,
@@ -471,6 +518,29 @@ namespace GIBS.Modules.MealTracker
                     PortalSecurity cleanup = new PortalSecurity();
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+                    string mealDate = txtMealDateWeds.Text.ToString();
+                    string deliveredDate = "";
+
+                    if (cbxDeliveryPriorDayWeds.Checked)
+                    {
+                        // First, parse the string into a DateTime object
+                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                        {
+                            // Now, subtract one day using the AddDays() method
+                            DateTime previousDay = originalDate.AddDays(-1);
+
+                            // If you need the result back as a string in a specific format:
+                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                        }
+
+                    }
+                    else
+                    {
+                        deliveredDate = mealDate.ToString();
+                    }
+
                     MealInfo miWeds;
                     miWeds = new MealInfo
 
@@ -488,8 +558,8 @@ namespace GIBS.Modules.MealTracker
                         MTPortalID = this.PortalId,
                         Adults = Convert.ToInt32(txtAdultsWeds.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
-                              ,
-                        DeliveryTime = txtMealDateWeds.Text.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
+                        ,
+                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteWeds.Text.ToString())
                         ,
@@ -514,6 +584,30 @@ namespace GIBS.Modules.MealTracker
                     PortalSecurity cleanup = new PortalSecurity();
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+                    string mealDate = txtMealDateThurs.Text.ToString();
+                    string deliveredDate = "";
+
+                    if (cbxDeliveryPriorDayThurs.Checked)
+                    {
+                        // First, parse the string into a DateTime object
+                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                        {
+                            // Now, subtract one day using the AddDays() method
+                            DateTime previousDay = originalDate.AddDays(-1);
+
+                            // If you need the result back as a string in a specific format:
+                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                        }
+
+                    }
+                    else
+                    {
+                        deliveredDate = mealDate.ToString();
+                    }
+
+
                     MealInfo miThurs;
                     miThurs = new MealInfo
 
@@ -532,7 +626,7 @@ namespace GIBS.Modules.MealTracker
                         Adults = Convert.ToInt32(txtAdultsThurs.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
                          ,
-                        DeliveryTime = txtMealDateThurs.Text.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
+                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteThurs.Text.ToString())
                         ,
@@ -559,6 +653,28 @@ namespace GIBS.Modules.MealTracker
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
                     _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
 
+                    string mealDate = txtMealDateFri.Text.ToString();
+                    string deliveredDate = "";
+
+                    if (cbxDeliveryPriorDayFri.Checked)
+                    {
+                        // First, parse the string into a DateTime object
+                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                        {
+                            // Now, subtract one day using the AddDays() method
+                            DateTime previousDay = originalDate.AddDays(-1);
+
+                            // If you need the result back as a string in a specific format:
+                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                        }
+
+                    }
+                    else
+                    {
+                        deliveredDate = mealDate.ToString();
+                    }
+
                     MealInfo miFri;
                     miFri = new MealInfo
 
@@ -577,7 +693,7 @@ namespace GIBS.Modules.MealTracker
                         Adults = Convert.ToInt32(txtAdultsFri.Text.ToString()),
                         DESE = CheckBoxDESE.Checked
                          ,
-                        DeliveryTime = txtMealDateFri.Text.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
+                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
                         ,
                         DamagedIncomplete = Int32.Parse(txtDamagedIncompleteFri.Text.ToString())
                         ,
@@ -820,6 +936,28 @@ namespace GIBS.Modules.MealTracker
         {
             // UPDATE ITEM HERE . . . .
 
+            string mealDate = txtMealDateEdit.Text.ToString();
+            string deliveredDate = "";
+
+            if (cbxDeliveryPriorDayEdit.Checked)
+            {
+                // First, parse the string into a DateTime object
+                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+                {
+                    // Now, subtract one day using the AddDays() method
+                    DateTime previousDay = originalDate.AddDays(-1);
+
+                    // If you need the result back as a string in a specific format:
+                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+                }
+
+            }
+            else
+            {
+                deliveredDate = mealDate.ToString();
+            }
+
             MealInfo mi_update;
             mi_update = new MealInfo
 
@@ -830,7 +968,7 @@ namespace GIBS.Modules.MealTracker
                 SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()), 
                 Adults = Convert.ToInt32( txtAdultsCountEdit.Text.ToString()),
                 DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
-                DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString(),
+                DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString(),
                 Short = Convert.ToInt32(txtShortEdit.Text.ToString()),
                 Notes = txtNotesEdit.Text.ToString()
 
@@ -849,6 +987,7 @@ namespace GIBS.Modules.MealTracker
             txtAdultsCountEdit.Text = string.Empty;
             txtNotesEdit.Text = string.Empty;
             txtShortEdit.Text = string.Empty;
+            cbxDeliveryPriorDayEdit.Checked = false;
             FillGrid();
             Panel1.Visible = false;
 
@@ -913,6 +1052,11 @@ namespace GIBS.Modules.MealTracker
                                 ddlDeliveryTimeEdit.Items.Insert(1, new ListItem(item.DeliveryTime, item.DeliveryTime));
                                 ddlDeliveryTimeEdit.SelectedValue = item.DeliveryTime;
                             }
+                        }
+
+                        if (item.MealDate.ToShortDateString() != item.DeliveryDateTime.ToShortDateString())
+                        {
+                            cbxDeliveryPriorDayEdit.Checked = true;
                         }
 
                     }

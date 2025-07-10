@@ -177,6 +177,24 @@
   <data name="lblDeliveredWeds.Text" xml:space="preserve">
     <value>Delivered</value>
   </data>
+  <data name="lblDeliveryPriorDay.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
+  <data name="lblDeliveryPriorDayEdit.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
+  <data name="lblDeliveryPriorDayFri.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
+  <data name="lblDeliveryPriorDayThurs.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
+  <data name="lblDeliveryPriorDayTues.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
+  <data name="lblDeliveryPriorDayWeds.Text" xml:space="preserve">
+    <value>PDD&lt;sup&gt;*&lt;/sup&gt;</value>
+  </data>
   <data name="lblDeliveryTime.Text" xml:space="preserve">
     <value>Delivery&amp;nbsp;Time</value>
   </data>

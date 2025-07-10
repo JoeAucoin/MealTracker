@@ -95,7 +95,7 @@
 
 <div class="container">
     	<div class="row form">
-                <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4 col-md-offset-1">
+                <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
             
             <dnn:label id="lblSchoolLocation" runat="server" controlname="ddlLocationID" suffix=":" CssClass="control-label" />
 	
@@ -120,7 +120,7 @@
     <div class="row form">
 
 
-        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDate" runat="server" controlname="txtMealDate" suffix=":" for="txtMealDate" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-2"><dnn:label id="lblMealDate" runat="server" controlname="txtMealDate" suffix=":" for="txtMealDate" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDate" runat="server" MaxLength="10" AutoCompleteType="Disabled" ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="reqMealDate" resourcekey="reqMealDate" controltovalidate="txtMealDate" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
@@ -134,6 +134,12 @@
 	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTime" controltovalidate="ddlDeliveryTime" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTime" CssClass="NormalRed" />
             
             </div>
+
+
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDay" runat="server" controlname="cbxDeliveryPriorDay" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDay" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
 
         <div class="form-group col-xs-5 col-sm-3 col-md-3 col-lg-1">
             
@@ -168,7 +174,7 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateTues" runat="server" controlname="txtMealDateTues" suffix=":" for="txtMealDateTues" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblMealDateTues" runat="server" controlname="txtMealDateTues" suffix=":" for="txtMealDateTues" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateTues" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator1" resourcekey="reqMealDate" controltovalidate="txtMealDateTues" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
@@ -182,6 +188,12 @@
 	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeTues" controltovalidate="ddlDeliveryTimeTues" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeTues" CssClass="NormalRed" />
             
             </div>
+
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDayTues" runat="server" controlname="cbxDeliveryPriorDayTues" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDayTues" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
+
 
         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
@@ -219,7 +231,7 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateWeds" runat="server" controlname="txtMealDateWeds" suffix=":" for="txtMealDateWeds" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblMealDateWeds" runat="server" controlname="txtMealDateWeds" suffix=":" for="txtMealDateWeds" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateWeds" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator2" resourcekey="reqMealDate" controltovalidate="txtMealDateWeds" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
@@ -232,6 +244,12 @@
 	<asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator9" controltovalidate="ddlDeliveryTimeWeds" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeTues" CssClass="NormalRed" />
             
             </div>
+
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDayWeds" runat="server" controlname="cbxDeliveryPriorDayWeds" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDayWeds" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
+
 
         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
@@ -269,7 +287,7 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateThurs" runat="server" controlname="txtMealDateThurs" suffix=":" for="txtMealDateThurs" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblMealDateThurs" runat="server" controlname="txtMealDateThurs" suffix=":" for="txtMealDateThurs" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateThurs" runat="server" MaxLength="10" ClientIDMode="Static" AutoCompleteType="Disabled" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator3" resourcekey="reqMealDate" controltovalidate="txtMealDateThurs" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
@@ -283,6 +301,13 @@
 	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeThurs" controltovalidate="ddlDeliveryTimeThurs" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeThurs" CssClass="NormalRed" />
             
             </div>
+
+
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDayThurs" runat="server" controlname="cbxDeliveryPriorDayThurs" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDayThurs" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
+
 
         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
@@ -321,7 +346,7 @@
         <div class="row form">
 
 
-        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2 col-md-offset-1"><dnn:label id="lblMealDateFri" runat="server" controlname="txtMealDateFri" suffix=":" for="txtMealDateFri" CssClass="control-label" />
+        <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-2"><dnn:label id="lblMealDateFri" runat="server" controlname="txtMealDateFri" suffix=":" for="txtMealDateFri" CssClass="control-label" />
 			<asp:TextBox ID="txtMealDateFri" runat="server" MaxLength="10"  ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator4" resourcekey="reqMealDate" controltovalidate="txtMealDateFri" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
@@ -335,6 +360,11 @@
 	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeFri" controltovalidate="ddlDeliveryTimeFri" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeFri" CssClass="NormalRed" />
             
             </div>
+
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDayFri" runat="server" controlname="cbxDeliveryPriorDayFri" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDayFri" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
 
         <div class="form-group col-xs-5 col-sm-2 col-md-2 col-lg-1">
             
@@ -437,6 +467,11 @@
 	<asp:RequiredFieldValidator runat="server" id="reqDeliveryTimeEdit" controltovalidate="ddlDeliveryTimeEdit" ValidationGroup="MealUpdate" InitialValue="0" Display="Dynamic" errormessage="Required!" resourcekey="reqDeliveryTimeEdit" CssClass="NormalRed" />         
             </div>
 
+ <div class="form-group col-xs-4 col-sm-3 col-md-3 col-lg-1">
+     <dnn:label id="lblDeliveryPriorDayEdit" runat="server" controlname="cbxDeliveryPriorDayEdit" suffix=":" CssClass="control-label" />
+     <asp:CheckBox ID="cbxDeliveryPriorDayEdit" runat="server" CssClass="form-control checkbox-lg" />
+     </div>
+
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
             <dnn:label id="lblDeliveredEdit" runat="server" controlname="txtDeliveredEdit" suffix=":" CssClass="control-label" />
 	<asp:TextBox ID="txtDeliveredEdit" runat="server" ValidationGroup="MealUpdate" type="number" pattern="\d*" CssClass="form-control" /><asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator6" controltovalidate="txtDeliveredEdit" Display="Dynamic" errormessage="Required!" resourcekey="reqDelivered" CssClass="NormalRed" />   
@@ -464,10 +499,7 @@
 
         </div>
 
-	<div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
-	 <asp:LinkButton ID="lbUpdateMeal" runat="server" resourcekey="lbUpdateMeal" OnClick="lbUpdateMeal_Click" ValidationGroup="MealUpdate" CssClass="btn btn-primary" />
-        <asp:LinkButton ID="LinkButtonCancelUpdate" runat="server" CausesValidation="false" resourcekey="LinkButtonCancelUpdate" OnClick="LinkButtonCancelUpdate_Click" CssClass="btn btn-light" />
-	</div>
+
 
     </div>
 
@@ -475,6 +507,13 @@
        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7 col-md-offset-1"><dnn:label id="lblNotedEdit" runat="server" controlname="txtNotesEdit" suffix=":" CssClass="control-label" />
 		<asp:TextBox ID="txtNotesEdit" runat="server" TextMode="MultiLine" CssClass="form-control input-lg"></asp:TextBox>      
         </div> 
+
+	<div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-1">
+        <dnn:label id="lblUpdateButtons" runat="server" controlname="lbUpdateMeal" CssClass="control-label" />
+	 <asp:LinkButton ID="lbUpdateMeal" runat="server" resourcekey="lbUpdateMeal" OnClick="lbUpdateMeal_Click" ValidationGroup="MealUpdate" CssClass="btn btn-primary" />
+        <asp:LinkButton ID="LinkButtonCancelUpdate" runat="server" CausesValidation="false" resourcekey="LinkButtonCancelUpdate" OnClick="LinkButtonCancelUpdate_Click" CssClass="btn btn-light" />
+	</div>
+
         </div>
 
 
@@ -514,7 +553,7 @@
 <ItemStyle Width="90px"></ItemStyle>
         </asp:BoundField>
 
-        <asp:BoundField HeaderText="Delivery Time" DataField="DeliveryTime" NullDisplayText="" ItemStyle-Width="80px">
+        <asp:BoundField HeaderText="Delivery Time" DataField="DeliveryTime" NullDisplayText="" HtmlEncode="false" ItemStyle-Width="80px">
 <ItemStyle Width="80px"></ItemStyle>
         </asp:BoundField>
 

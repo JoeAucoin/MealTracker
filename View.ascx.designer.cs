@@ -177,6 +177,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTime;
 
         /// <summary>
+        /// lblDeliveryPriorDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDay;
+
+        /// <summary>
+        /// cbxDeliveryPriorDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDay;
+
+        /// <summary>
         /// lblDelivered control.
         /// </summary>
         /// <remarks>
@@ -382,6 +400,24 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeTues;
+
+        /// <summary>
+        /// lblDeliveryPriorDayTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDayTues;
+
+        /// <summary>
+        /// cbxDeliveryPriorDayTues control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDayTues;
 
         /// <summary>
         /// lblDeliveredTues control.
@@ -591,6 +627,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
 
         /// <summary>
+        /// lblDeliveryPriorDayWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDayWeds;
+
+        /// <summary>
+        /// cbxDeliveryPriorDayWeds control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDayWeds;
+
+        /// <summary>
         /// lblDeliveredWeds control.
         /// </summary>
         /// <remarks>
@@ -798,6 +852,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeThurs;
 
         /// <summary>
+        /// lblDeliveryPriorDayThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDayThurs;
+
+        /// <summary>
+        /// cbxDeliveryPriorDayThurs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDayThurs;
+
+        /// <summary>
         /// lblDeliveredThurs control.
         /// </summary>
         /// <remarks>
@@ -1003,6 +1075,24 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeFri;
+
+        /// <summary>
+        /// lblDeliveryPriorDayFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDayFri;
+
+        /// <summary>
+        /// cbxDeliveryPriorDayFri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDayFri;
 
         /// <summary>
         /// lblDeliveredFri control.
@@ -1302,6 +1392,24 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqDeliveryTimeEdit;
 
         /// <summary>
+        /// lblDeliveryPriorDayEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeliveryPriorDayEdit;
+
+        /// <summary>
+        /// cbxDeliveryPriorDayEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxDeliveryPriorDayEdit;
+
+        /// <summary>
         /// lblDeliveredEdit control.
         /// </summary>
         /// <remarks>
@@ -1455,24 +1563,6 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.TextBox txtShortEdit;
 
         /// <summary>
-        /// lbUpdateMeal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbUpdateMeal;
-
-        /// <summary>
-        /// LinkButtonCancelUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonCancelUpdate;
-
-        /// <summary>
         /// lblNotedEdit control.
         /// </summary>
         /// <remarks>
@@ -1489,6 +1579,33 @@ namespace GIBS.Modules.MealTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNotesEdit;
+
+        /// <summary>
+        /// lblUpdateButtons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblUpdateButtons;
+
+        /// <summary>
+        /// lbUpdateMeal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbUpdateMeal;
+
+        /// <summary>
+        /// LinkButtonCancelUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonCancelUpdate;
 
         /// <summary>
         /// GridView1 control.

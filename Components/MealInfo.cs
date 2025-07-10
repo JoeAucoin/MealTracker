@@ -28,6 +28,8 @@ namespace GIBS.Modules.MealTracker.Components
         public int DamagedIncomplete { get; set; }
         public string DeliveryTime { get; set; }
 
+        public DateTime DeliveryDateTime { get; set; }
+
         public int LocationID { get; set; }
         public string LocationCode { get; set; }
         public string LocationCodeSearchName { get; set; }
