@@ -91,6 +91,8 @@ namespace GIBS.Modules.MealTracker.Data
         ////    public abstract IDataReader MealTracker_GetMeal(int mealID);
         public abstract int MealTracker_AddMeal(MealInfo mi);
         public abstract void MealTracker_MealUpdate(MealInfo mi);
+
+        public abstract void MealTracker_MealUpdateAll(MealInfo mi);
         public abstract void DeleteMeal(int mealID);
 
         public abstract IDataReader GetMeal(int mealID);

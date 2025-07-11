@@ -48,12 +48,12 @@ namespace GIBS.Modules.MealTracker
     public partial class View : MealTrackerModuleBase, IActionable
     {
 
-        static string _LocationsList = "MTLocations";
-        static string _SeatingList = "MTMealSeating";
-        static bool _DESE_Breakfast = false;
-        static bool _DESE_Lunch = false;
-        static bool _DESE_Snack = false;
-        static bool _DESE_Snack_PM = false;
+        public string _LocationsList = "MTLocations";
+        public string _SeatingList = "MTMealSeating";
+        public bool _DESE_Breakfast = false;
+        public bool _DESE_Lunch = false;
+        public bool _DESE_Snack = false;
+        public bool _DESE_Snack_PM = false;
         public string _DeliveryStartTime = "08:00 AM";
         public string _DeliveryEndTime = "12:00 PM";
         public string _DeliveryInterval = "10";
@@ -175,8 +175,12 @@ namespace GIBS.Modules.MealTracker
 
             try
             {
-
-                GridView1.DataSource = MealController.GetAllMeals(Int32.Parse(ddlLocationID.SelectedValue.ToString()), this.PortalId);
+                int locationId = 0;
+                if (ddlLocationID.SelectedValue != null)
+                {
+                    Int32.TryParse(ddlLocationID.SelectedValue, out locationId);
+                }
+                GridView1.DataSource = MealController.GetAllMeals(locationId, this.PortalId);
                 GridView1.DataBind();
 
             }
@@ -250,6 +254,14 @@ namespace GIBS.Modules.MealTracker
                 ddlLocationID.Items.Insert(0, new ListItem("-- Please Select --", "0"));
                 //  ddlLocationID.SelectedValue = "MA";
 
+
+                ddlLocationEdit.DataTextField = "Location";
+                ddlLocationEdit.DataValueField = "LocationID";
+                ddlLocationEdit.DataSource = items;
+                ddlLocationEdit.DataBind();
+                ddlLocationEdit.Items.Insert(0, new ListItem("-- Please Select --", "0"));
+
+
                 //MTMealSeating  ddlSeating
                 var seating = new ListController().GetListEntryInfoItems(_SeatingList, "", this.PortalId);
                 ddlSeating.DataTextField = "Text";
@@ -257,6 +269,14 @@ namespace GIBS.Modules.MealTracker
                 ddlSeating.DataSource = seating;
                 ddlSeating.DataBind();
                 ddlSeating.Items.Insert(0, new ListItem("-- Please Select --", ""));
+
+                ddlSeating.Enabled = false;
+
+                ddlMealEdit.DataTextField = "Text";
+                ddlMealEdit.DataValueField = "Value";
+                ddlMealEdit.DataSource = seating;
+                ddlMealEdit.DataBind();
+                ddlMealEdit.Items.Insert(0, new ListItem("-- Please Select --", ""));
             }
 
             catch (Exception ex)
@@ -347,369 +367,457 @@ namespace GIBS.Modules.MealTracker
 
         {
             hfSelecteValue.Value = ddlLocationID.SelectedValue.ToString();
-            int _hidMealID = Convert.ToInt32(HiddenMealID.Value.ToString());
+            int _hidMealID = 0;
+            Int32.TryParse(HiddenMealID.Value, out _hidMealID);
+
             lblDebug.Text = "Step 1 <br />";
-            MealInfo mi;
-            
+
             if (_hidMealID > 0)
 
             {
-                lblDebug.Text += "MealID = 0 <br />";
-                //    mi = ArticleController.GetArticle(ArticleId);
-                //mi.MealDate = Convert.ToDateTime(txtMealDate.Text.ToString());
-                //mi.Seating = txtPlatesServed.Text.ToString();
-                //mi.ChildCount = txtChildCount.Text.ToString();
-                //mi.LastModifiedOnDate = DateTime.Now;
-                //mi.LastModifiedByUserId = UserInfo.UserID;
-                //mi.ModuleId = ModuleId;
-
+                lblDebug.Text += "MealID > 0, update not implemented. <br />";
+                // Update logic for an existing meal would go here.
+                // Based on the current code, this block is not fully implemented.
             }
 
             else
 
             {
-                lblDebug.Text += "MealID = not exists <br />";
-                string _notes = "";
-
-
-                if (Int32.Parse(txtDelivered.Text.ToString()) > 0)
-                {
-                    if(DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Mon")
-                    {
-                        _notes = txtMealNotes.Text.ToString();
-                    }
-                    else
-                    {
-                        _notes = "";
-                    }
-
-                    PortalSecurity cleanup = new PortalSecurity();
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
-
-                    string mealDate = txtMealDate.Text.ToString();
-                    string deliveredDate = "";
-
-                    if (cbxDeliveryPriorDay.Checked)
-                    {
-                        // First, parse the string into a DateTime object
-                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
-                        {
-                            // Now, subtract one day using the AddDays() method
-                            DateTime previousDay = originalDate.AddDays(-1);
-
-                            // If you need the result back as a string in a specific format:
-                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
-
-                        }
-
-                    }
-                    else
-                    {
-                        deliveredDate = mealDate.ToString();
-                    }
-
-                    mi = new MealInfo
-
-                    {
-
-                        MealDate = Convert.ToDateTime(txtMealDate.Text.ToString()),
-                        Seating = ddlSeating.SelectedValue.ToString(),
-                        DeliveredCount = Convert.ToInt32(txtDelivered.Text.ToString()),
-                        FirstsCount = Convert.ToInt32(txtFirstsCount.Text.ToString()),
-                        SecondsCount = Convert.ToInt32(txtSecondsCount.Text.ToString()),
-                        Location = ddlLocationID.SelectedItem.Text.ToString(),
-                        LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
-                        Notes = _notes.ToString(),
-                        CreatedByUserID = this.UserId,
-                        MTPortalID = this.PortalId,
-                        Adults = Convert.ToInt32(txtAdults.Text.ToString()),
-                        DESE = CheckBoxDESE.Checked
-                        , DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
-                        , DamagedIncomplete = Int32.Parse(txtDamagedIncomplete.Text.ToString())
-                        , Short = Convert.ToInt32(txtShort.Text.ToString())
-
-                    };
-
-                    mi.Save();
-
-                }
-
-                   
-
-                if(Int32.Parse(txtDeliveredTues.Text.ToString()) > 0)
-                {
-                    if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Tues")
-                    {
-                        _notes = txtMealNotes.Text.ToString();
-                    }
-                    else
-                    {
-                        _notes = "";
-                    }
-
-                    PortalSecurity cleanup = new PortalSecurity();
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
-
-                    string mealDate = txtMealDateTues.Text.ToString();
-                    string deliveredDate = "";
-
-                    if (cbxDeliveryPriorDayTues.Checked)
-                    {
-                        // First, parse the string into a DateTime object
-                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
-                        {
-                            // Now, subtract one day using the AddDays() method
-                            DateTime previousDay = originalDate.AddDays(-1);
-
-                            // If you need the result back as a string in a specific format:
-                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
-
-                        }
-
-                    }
-                    else
-                    {
-                        deliveredDate = mealDate.ToString();
-                    }
-
-
-                    MealInfo miTues;
-                    miTues = new MealInfo
-
-                    {
-
-                        MealDate = Convert.ToDateTime(txtMealDateTues.Text.ToString()),
-                        Seating = ddlSeating.SelectedValue.ToString(),
-                        DeliveredCount = Convert.ToInt32(txtDeliveredTues.Text.ToString()),
-                        FirstsCount = Convert.ToInt32(txtFirstsCountTues.Text.ToString()),
-                        SecondsCount = Convert.ToInt32(txtSecondsCountTues.Text.ToString()),
-                        Location = ddlLocationID.SelectedItem.Text.ToString(),
-                        LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
-                        Notes = _notes.ToString(),
-                        CreatedByUserID = this.UserId,
-                        MTPortalID = this.PortalId,
-                        Adults = Convert.ToInt32(txtAdultsTues.Text.ToString()),
-                        DESE = CheckBoxDESE.Checked
-                              ,
-                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
-                        ,
-                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteTues.Text.ToString())
-                        ,
-                        Short = Convert.ToInt32(txtShortTues.Text.ToString())
-
-                    };
-
-                    miTues.Save();
-                }
-                if (Int32.Parse(txtDeliveredWeds.Text.ToString()) > 0)
-                    
-                {
-                    if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Weds")
-                    {
-                        _notes = txtMealNotes.Text.ToString();
-                    }
-                    else
-                    {
-                        _notes = "";
-                    }
-
-                    PortalSecurity cleanup = new PortalSecurity();
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
-
-                    string mealDate = txtMealDateWeds.Text.ToString();
-                    string deliveredDate = "";
-
-                    if (cbxDeliveryPriorDayWeds.Checked)
-                    {
-                        // First, parse the string into a DateTime object
-                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
-                        {
-                            // Now, subtract one day using the AddDays() method
-                            DateTime previousDay = originalDate.AddDays(-1);
-
-                            // If you need the result back as a string in a specific format:
-                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
-
-                        }
-
-                    }
-                    else
-                    {
-                        deliveredDate = mealDate.ToString();
-                    }
-
-                    MealInfo miWeds;
-                    miWeds = new MealInfo
-
-                    {
-
-                        MealDate = Convert.ToDateTime(txtMealDateWeds.Text.ToString()),
-                        Seating = ddlSeating.SelectedValue.ToString(),
-                        DeliveredCount = Convert.ToInt32(txtDeliveredWeds.Text.ToString()),
-                        FirstsCount = Convert.ToInt32(txtFirstsCountWeds.Text.ToString()),
-                        SecondsCount = Convert.ToInt32(txtSecondsCountWeds.Text.ToString()),
-                        Location = ddlLocationID.SelectedItem.Text.ToString(),
-                        LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
-                        Notes = _notes.ToString(),
-                        CreatedByUserID = this.UserId,
-                        MTPortalID = this.PortalId,
-                        Adults = Convert.ToInt32(txtAdultsWeds.Text.ToString()),
-                        DESE = CheckBoxDESE.Checked
-                        ,
-                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
-                        ,
-                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteWeds.Text.ToString())
-                        ,
-                        Short = Convert.ToInt32(txtShortWeds.Text.ToString())
-                    };
-
-                    miWeds.Save();
-                }
-
-               
-                if (Int32.Parse(txtDeliveredThurs.Text.ToString()) > 0)
-                {
-                    if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Thurs")
-                    {
-                        _notes = txtMealNotes.Text.ToString();
-                    }
-                    else
-                    {
-                        _notes = "";
-                    }
-
-                    PortalSecurity cleanup = new PortalSecurity();
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
-
-                    string mealDate = txtMealDateThurs.Text.ToString();
-                    string deliveredDate = "";
-
-                    if (cbxDeliveryPriorDayThurs.Checked)
-                    {
-                        // First, parse the string into a DateTime object
-                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
-                        {
-                            // Now, subtract one day using the AddDays() method
-                            DateTime previousDay = originalDate.AddDays(-1);
-
-                            // If you need the result back as a string in a specific format:
-                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
-
-                        }
-
-                    }
-                    else
-                    {
-                        deliveredDate = mealDate.ToString();
-                    }
-
-
-                    MealInfo miThurs;
-                    miThurs = new MealInfo
-
-                    {
-
-                        MealDate = Convert.ToDateTime(txtMealDateThurs.Text.ToString()),
-                        Seating = ddlSeating.SelectedValue.ToString(),
-                        DeliveredCount = Convert.ToInt32(txtDeliveredThurs.Text.ToString()),
-                        FirstsCount = Convert.ToInt32(txtFirstsCountThurs.Text.ToString()),
-                        SecondsCount = Convert.ToInt32(txtSecondsCountThurs.Text.ToString()),
-                        Location = ddlLocationID.SelectedItem.Text.ToString(),
-                        LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
-                        Notes = _notes.ToString(),
-                        CreatedByUserID = this.UserId,
-                        MTPortalID = this.PortalId,
-                        Adults = Convert.ToInt32(txtAdultsThurs.Text.ToString()),
-                        DESE = CheckBoxDESE.Checked
-                         ,
-                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
-                        ,
-                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteThurs.Text.ToString())
-                        ,
-                        Short = Convert.ToInt32(txtShortThurs.Text.ToString())
-
-                    };
-
-                    miThurs.Save();
-                }
-
-                if (Int32.Parse(txtDeliveredFri.Text.ToString()) > 0)
-                    
-                {
-                    if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Fri")
-                    {
-                        _notes = txtMealNotes.Text.ToString();
-                    }
-                    else
-                    {
-                        _notes = "";
-                    }
-
-                    PortalSecurity cleanup = new PortalSecurity();
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
-                    _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
-
-                    string mealDate = txtMealDateFri.Text.ToString();
-                    string deliveredDate = "";
-
-                    if (cbxDeliveryPriorDayFri.Checked)
-                    {
-                        // First, parse the string into a DateTime object
-                        if (DateTime.TryParse(mealDate, out DateTime originalDate))
-                        {
-                            // Now, subtract one day using the AddDays() method
-                            DateTime previousDay = originalDate.AddDays(-1);
-
-                            // If you need the result back as a string in a specific format:
-                            deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
-
-                        }
-
-                    }
-                    else
-                    {
-                        deliveredDate = mealDate.ToString();
-                    }
-
-                    MealInfo miFri;
-                    miFri = new MealInfo
-
-                    {
-
-                        MealDate = Convert.ToDateTime(txtMealDateFri.Text.ToString()),
-                        Seating = ddlSeating.SelectedValue.ToString(),
-                        DeliveredCount = Convert.ToInt32(txtDeliveredFri.Text.ToString()),
-                        FirstsCount = Convert.ToInt32(txtFirstsCountFri.Text.ToString()),
-                        SecondsCount = Convert.ToInt32(txtSecondsCountFri.Text.ToString()),
-                        Location = ddlLocationID.SelectedItem.Text.ToString(),
-                        LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
-                        Notes = _notes.ToString(),
-                        CreatedByUserID = this.UserId,
-                        MTPortalID = this.PortalId,
-                        Adults = Convert.ToInt32(txtAdultsFri.Text.ToString()),
-                        DESE = CheckBoxDESE.Checked
-                         ,
-                        DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
-                        ,
-                        DamagedIncomplete = Int32.Parse(txtDamagedIncompleteFri.Text.ToString())
-                        ,
-                        Short = Convert.ToInt32(txtShortFri.Text.ToString())
-                    };
-
-                    miFri.Save();
-                }
-
-
+                lblDebug.Text += "MealID not found, creating new entries. <br />";
+
+                SaveMealForDay("Mon", txtDelivered, txtMealDate, cbxDeliveryPriorDay, txtFirstsCount, txtSecondsCount, txtAdults, ddlDeliveryTime, txtDamagedIncomplete, txtShort);
+                SaveMealForDay("Tues", txtDeliveredTues, txtMealDateTues, cbxDeliveryPriorDayTues, txtFirstsCountTues, txtSecondsCountTues, txtAdultsTues, ddlDeliveryTimeTues, txtDamagedIncompleteTues, txtShortTues);
+                SaveMealForDay("Weds", txtDeliveredWeds, txtMealDateWeds, cbxDeliveryPriorDayWeds, txtFirstsCountWeds, txtSecondsCountWeds, txtAdultsWeds, ddlDeliveryTimeWeds, txtDamagedIncompleteWeds, txtShortWeds);
+                SaveMealForDay("Thurs", txtDeliveredThurs, txtMealDateThurs, cbxDeliveryPriorDayThurs, txtFirstsCountThurs, txtSecondsCountThurs, txtAdultsThurs, ddlDeliveryTimeThurs, txtDamagedIncompleteThurs, txtShortThurs);
+                SaveMealForDay("Fri", txtDeliveredFri, txtMealDateFri, cbxDeliveryPriorDayFri, txtFirstsCountFri, txtSecondsCountFri, txtAdultsFri, ddlDeliveryTimeFri, txtDamagedIncompleteFri, txtShortFri);
             }
             ClearForm();
             FillGrid();
-       
+
 
         }
+
+        private void SaveMealForDay(string day, TextBox deliveredTextBox, TextBox mealDateTextBox, CheckBox priorDayCheckBox, TextBox firstsCountTextBox, TextBox secondsCountTextBox, TextBox adultsTextBox, DropDownList deliveryTimeDropDown, TextBox damagedIncompleteTextBox, TextBox shortTextBox)
+        {
+            if (!int.TryParse(deliveredTextBox.Text, out int deliveredCount) || deliveredCount <= 0)
+            {
+                return;
+            }
+
+            string notes = "";
+            if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == day)
+            {
+                notes = txtMealNotes.Text;
+                var cleanup = new PortalSecurity();
+                notes = cleanup.InputFilter(notes, PortalSecurity.FilterFlag.NoScripting);
+                notes = cleanup.InputFilter(notes, PortalSecurity.FilterFlag.NoMarkup);
+            }
+
+            string deliveredDate = mealDateTextBox.Text;
+            if (priorDayCheckBox.Checked && DateTime.TryParse(mealDateTextBox.Text, out DateTime originalDate))
+            {
+                deliveredDate = originalDate.AddDays(-1).ToString("MM/dd/yyyy");
+            }
+
+            int.TryParse(firstsCountTextBox.Text, out int firstsCount);
+            int.TryParse(secondsCountTextBox.Text, out int secondsCount);
+            int.TryParse(adultsTextBox.Text, out int adults);
+            int.TryParse(damagedIncompleteTextBox.Text, out int damagedIncomplete);
+            int.TryParse(shortTextBox.Text, out int shortCount);
+            int.TryParse(ddlLocationID.SelectedValue, out int locationId);
+            DateTime.TryParse(mealDateTextBox.Text, out DateTime mealDate);
+
+            var mealInfo = new MealInfo
+            {
+                MealDate = mealDate,
+                Seating = ddlSeating.SelectedValue,
+                DeliveredCount = deliveredCount,
+                FirstsCount = firstsCount,
+                SecondsCount = secondsCount,
+                Location = ddlLocationID.SelectedItem.Text,
+                LocationID = locationId,
+                Notes = notes,
+                CreatedByUserID = this.UserId,
+                MTPortalID = this.PortalId,
+                Adults = adults,
+                DESE = CheckBoxDESE.Checked,
+                DeliveryTime = $"{deliveredDate} {deliveryTimeDropDown.SelectedValue}",
+                DamagedIncomplete = damagedIncomplete,
+                Short = shortCount
+            };
+
+            mealInfo.Save();
+        }
+
+
+
+        //protected void LbSaveClick(object sender, EventArgs e)
+
+        //{
+        //    hfSelecteValue.Value = ddlLocationID.SelectedValue.ToString();
+        //    int _hidMealID = Convert.ToInt32(HiddenMealID.Value.ToString());
+        //    lblDebug.Text = "Step 1 <br />";
+        //    MealInfo mi;
+
+        //    if (_hidMealID > 0)
+
+        //    {
+        //        lblDebug.Text += "MealID = 0 <br />";
+        //        //    mi = ArticleController.GetArticle(ArticleId);
+        //        //mi.MealDate = Convert.ToDateTime(txtMealDate.Text.ToString());
+        //        //mi.Seating = txtPlatesServed.Text.ToString();
+        //        //mi.ChildCount = txtChildCount.Text.ToString();
+        //        //mi.LastModifiedOnDate = DateTime.Now;
+        //        //mi.LastModifiedByUserId = UserInfo.UserID;
+        //        //mi.ModuleId = ModuleId;
+
+        //    }
+
+        //    else
+
+        //    {
+        //        lblDebug.Text += "MealID = not exists <br />";
+        //        string _notes = "";
+
+
+        //        if (Int32.Parse(txtDelivered.Text.ToString()) > 0)
+        //        {
+        //            if(DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Mon")
+        //            {
+        //                _notes = txtMealNotes.Text.ToString();
+        //            }
+        //            else
+        //            {
+        //                _notes = "";
+        //            }
+
+        //            PortalSecurity cleanup = new PortalSecurity();
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+        //            string mealDate = txtMealDate.Text.ToString();
+        //            string deliveredDate = "";
+
+        //            if (cbxDeliveryPriorDay.Checked)
+        //            {
+        //                // First, parse the string into a DateTime object
+        //                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+        //                {
+        //                    // Now, subtract one day using the AddDays() method
+        //                    DateTime previousDay = originalDate.AddDays(-1);
+
+        //                    // If you need the result back as a string in a specific format:
+        //                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                deliveredDate = mealDate.ToString();
+        //            }
+
+        //            mi = new MealInfo
+
+        //            {
+
+        //                MealDate = Convert.ToDateTime(txtMealDate.Text.ToString()),
+        //                Seating = ddlSeating.SelectedValue.ToString(),
+        //                DeliveredCount = Convert.ToInt32(txtDelivered.Text.ToString()),
+        //                FirstsCount = Convert.ToInt32(txtFirstsCount.Text.ToString()),
+        //                SecondsCount = Convert.ToInt32(txtSecondsCount.Text.ToString()),
+        //                Location = ddlLocationID.SelectedItem.Text.ToString(),
+        //                LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
+        //                Notes = _notes.ToString(),
+        //                CreatedByUserID = this.UserId,
+        //                MTPortalID = this.PortalId,
+        //                Adults = Convert.ToInt32(txtAdults.Text.ToString()),
+        //                DESE = CheckBoxDESE.Checked
+        //                , DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTime.SelectedValue.ToString()
+        //                , DamagedIncomplete = Int32.Parse(txtDamagedIncomplete.Text.ToString())
+        //                , Short = Convert.ToInt32(txtShort.Text.ToString())
+
+        //            };
+
+        //            mi.Save();
+
+        //        }
+
+
+
+        //        if(Int32.Parse(txtDeliveredTues.Text.ToString()) > 0)
+        //        {
+        //            if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Tues")
+        //            {
+        //                _notes = txtMealNotes.Text.ToString();
+        //            }
+        //            else
+        //            {
+        //                _notes = "";
+        //            }
+
+        //            PortalSecurity cleanup = new PortalSecurity();
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+        //            string mealDate = txtMealDateTues.Text.ToString();
+        //            string deliveredDate = "";
+
+        //            if (cbxDeliveryPriorDayTues.Checked)
+        //            {
+        //                // First, parse the string into a DateTime object
+        //                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+        //                {
+        //                    // Now, subtract one day using the AddDays() method
+        //                    DateTime previousDay = originalDate.AddDays(-1);
+
+        //                    // If you need the result back as a string in a specific format:
+        //                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                deliveredDate = mealDate.ToString();
+        //            }
+
+
+        //            MealInfo miTues;
+        //            miTues = new MealInfo
+
+        //            {
+
+        //                MealDate = Convert.ToDateTime(txtMealDateTues.Text.ToString()),
+        //                Seating = ddlSeating.SelectedValue.ToString(),
+        //                DeliveredCount = Convert.ToInt32(txtDeliveredTues.Text.ToString()),
+        //                FirstsCount = Convert.ToInt32(txtFirstsCountTues.Text.ToString()),
+        //                SecondsCount = Convert.ToInt32(txtSecondsCountTues.Text.ToString()),
+        //                Location = ddlLocationID.SelectedItem.Text.ToString(),
+        //                LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
+        //                Notes = _notes.ToString(),
+        //                CreatedByUserID = this.UserId,
+        //                MTPortalID = this.PortalId,
+        //                Adults = Convert.ToInt32(txtAdultsTues.Text.ToString()),
+        //                DESE = CheckBoxDESE.Checked
+        //                      ,
+        //                DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeTues.SelectedValue.ToString()
+        //                ,
+        //                DamagedIncomplete = Int32.Parse(txtDamagedIncompleteTues.Text.ToString())
+        //                ,
+        //                Short = Convert.ToInt32(txtShortTues.Text.ToString())
+
+        //            };
+
+        //            miTues.Save();
+        //        }
+        //        if (Int32.Parse(txtDeliveredWeds.Text.ToString()) > 0)
+
+        //        {
+        //            if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Weds")
+        //            {
+        //                _notes = txtMealNotes.Text.ToString();
+        //            }
+        //            else
+        //            {
+        //                _notes = "";
+        //            }
+
+        //            PortalSecurity cleanup = new PortalSecurity();
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+        //            string mealDate = txtMealDateWeds.Text.ToString();
+        //            string deliveredDate = "";
+
+        //            if (cbxDeliveryPriorDayWeds.Checked)
+        //            {
+        //                // First, parse the string into a DateTime object
+        //                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+        //                {
+        //                    // Now, subtract one day using the AddDays() method
+        //                    DateTime previousDay = originalDate.AddDays(-1);
+
+        //                    // If you need the result back as a string in a specific format:
+        //                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                deliveredDate = mealDate.ToString();
+        //            }
+
+        //            MealInfo miWeds;
+        //            miWeds = new MealInfo
+
+        //            {
+
+        //                MealDate = Convert.ToDateTime(txtMealDateWeds.Text.ToString()),
+        //                Seating = ddlSeating.SelectedValue.ToString(),
+        //                DeliveredCount = Convert.ToInt32(txtDeliveredWeds.Text.ToString()),
+        //                FirstsCount = Convert.ToInt32(txtFirstsCountWeds.Text.ToString()),
+        //                SecondsCount = Convert.ToInt32(txtSecondsCountWeds.Text.ToString()),
+        //                Location = ddlLocationID.SelectedItem.Text.ToString(),
+        //                LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
+        //                Notes = _notes.ToString(),
+        //                CreatedByUserID = this.UserId,
+        //                MTPortalID = this.PortalId,
+        //                Adults = Convert.ToInt32(txtAdultsWeds.Text.ToString()),
+        //                DESE = CheckBoxDESE.Checked
+        //                ,
+        //                DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeWeds.SelectedValue.ToString()
+        //                ,
+        //                DamagedIncomplete = Int32.Parse(txtDamagedIncompleteWeds.Text.ToString())
+        //                ,
+        //                Short = Convert.ToInt32(txtShortWeds.Text.ToString())
+        //            };
+
+        //            miWeds.Save();
+        //        }
+
+
+        //        if (Int32.Parse(txtDeliveredThurs.Text.ToString()) > 0)
+        //        {
+        //            if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Thurs")
+        //            {
+        //                _notes = txtMealNotes.Text.ToString();
+        //            }
+        //            else
+        //            {
+        //                _notes = "";
+        //            }
+
+        //            PortalSecurity cleanup = new PortalSecurity();
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+        //            string mealDate = txtMealDateThurs.Text.ToString();
+        //            string deliveredDate = "";
+
+        //            if (cbxDeliveryPriorDayThurs.Checked)
+        //            {
+        //                // First, parse the string into a DateTime object
+        //                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+        //                {
+        //                    // Now, subtract one day using the AddDays() method
+        //                    DateTime previousDay = originalDate.AddDays(-1);
+
+        //                    // If you need the result back as a string in a specific format:
+        //                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                deliveredDate = mealDate.ToString();
+        //            }
+
+
+        //            MealInfo miThurs;
+        //            miThurs = new MealInfo
+
+        //            {
+
+        //                MealDate = Convert.ToDateTime(txtMealDateThurs.Text.ToString()),
+        //                Seating = ddlSeating.SelectedValue.ToString(),
+        //                DeliveredCount = Convert.ToInt32(txtDeliveredThurs.Text.ToString()),
+        //                FirstsCount = Convert.ToInt32(txtFirstsCountThurs.Text.ToString()),
+        //                SecondsCount = Convert.ToInt32(txtSecondsCountThurs.Text.ToString()),
+        //                Location = ddlLocationID.SelectedItem.Text.ToString(),
+        //                LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
+        //                Notes = _notes.ToString(),
+        //                CreatedByUserID = this.UserId,
+        //                MTPortalID = this.PortalId,
+        //                Adults = Convert.ToInt32(txtAdultsThurs.Text.ToString()),
+        //                DESE = CheckBoxDESE.Checked
+        //                 ,
+        //                DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeThurs.SelectedValue.ToString()
+        //                ,
+        //                DamagedIncomplete = Int32.Parse(txtDamagedIncompleteThurs.Text.ToString())
+        //                ,
+        //                Short = Convert.ToInt32(txtShortThurs.Text.ToString())
+
+        //            };
+
+        //            miThurs.Save();
+        //        }
+
+        //        if (Int32.Parse(txtDeliveredFri.Text.ToString()) > 0)
+
+        //        {
+        //            if (DDLNoteDays.SelectedValue == "All" || DDLNoteDays.SelectedValue == "Fri")
+        //            {
+        //                _notes = txtMealNotes.Text.ToString();
+        //            }
+        //            else
+        //            {
+        //                _notes = "";
+        //            }
+
+        //            PortalSecurity cleanup = new PortalSecurity();
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoScripting);
+        //            _notes = cleanup.InputFilter(_notes.ToString(), PortalSecurity.FilterFlag.NoMarkup);
+
+        //            string mealDate = txtMealDateFri.Text.ToString();
+        //            string deliveredDate = "";
+
+        //            if (cbxDeliveryPriorDayFri.Checked)
+        //            {
+        //                // First, parse the string into a DateTime object
+        //                if (DateTime.TryParse(mealDate, out DateTime originalDate))
+        //                {
+        //                    // Now, subtract one day using the AddDays() method
+        //                    DateTime previousDay = originalDate.AddDays(-1);
+
+        //                    // If you need the result back as a string in a specific format:
+        //                    deliveredDate = previousDay.ToString("MM/dd/yyyy"); // Or any other desired format
+
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                deliveredDate = mealDate.ToString();
+        //            }
+
+        //            MealInfo miFri;
+        //            miFri = new MealInfo
+
+        //            {
+
+        //                MealDate = Convert.ToDateTime(txtMealDateFri.Text.ToString()),
+        //                Seating = ddlSeating.SelectedValue.ToString(),
+        //                DeliveredCount = Convert.ToInt32(txtDeliveredFri.Text.ToString()),
+        //                FirstsCount = Convert.ToInt32(txtFirstsCountFri.Text.ToString()),
+        //                SecondsCount = Convert.ToInt32(txtSecondsCountFri.Text.ToString()),
+        //                Location = ddlLocationID.SelectedItem.Text.ToString(),
+        //                LocationID = Int32.Parse(ddlLocationID.SelectedValue.ToString()),
+        //                Notes = _notes.ToString(),
+        //                CreatedByUserID = this.UserId,
+        //                MTPortalID = this.PortalId,
+        //                Adults = Convert.ToInt32(txtAdultsFri.Text.ToString()),
+        //                DESE = CheckBoxDESE.Checked
+        //                 ,
+        //                DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeFri.SelectedValue.ToString()
+        //                ,
+        //                DamagedIncomplete = Int32.Parse(txtDamagedIncompleteFri.Text.ToString())
+        //                ,
+        //                Short = Convert.ToInt32(txtShortFri.Text.ToString())
+        //            };
+
+        //            miFri.Save();
+        //        }
+
+
+        //    }
+        //    ClearForm();
+        //    FillGrid();
+
+
+        //}
 
         public void ClearForm()
         {
@@ -771,6 +879,7 @@ namespace GIBS.Modules.MealTracker
                 txtDeliveredWeds.Text = "";
                 txtDeliveredThurs.Text = "";
                 txtDeliveredFri.Text = "";
+                CheckBoxDESE.Checked = false;
                 _DESE_Breakfast = false;
                 _DESE_Lunch = false;
                 _DESE_Snack = false;
@@ -810,50 +919,7 @@ namespace GIBS.Modules.MealTracker
             Response.Redirect(Globals.NavigateURL(PortalSettings.ActiveTab.TabID, "Report", "mid=" + ModuleId.ToString()));
         }
 
-        protected void ddlLocationID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ClearDelivered();
-            hfSelecteValue.Value = ddlLocationID.SelectedValue.ToString();
-            //ddlLocationID.Items.FindByValue(hfSelecteValue.Value.ToString()).Selected = true;
-            FillGrid();
-            LoadDeseSettings();
-
-
-        }
-
-        protected void ddlSeating_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                string whatsSelected = ddlSeating.SelectedValue.ToString();
-                switch (whatsSelected.ToString())
-                {
-                    case "Breakfast Seating":
-                        CheckBoxDESE.Checked = _DESE_Breakfast;
-                        break;
-                    case "AM Snack":
-                        CheckBoxDESE.Checked = _DESE_Snack;
-                        break;
-                    
-                    case "Lunch Seating":
-                        CheckBoxDESE.Checked = _DESE_Lunch;
-                        break;
-                    case "PM Snack":
-                        CheckBoxDESE.Checked = _DESE_Snack_PM;
-                        break;
-                   
-                    default:
-                        CheckBoxDESE.Checked = false;
-   break;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Exceptions.ProcessModuleLoadException(this, ex);
-            }
-
-        }
+       
 
         public void LoadDeseSettings()
         {
@@ -882,55 +948,9 @@ namespace GIBS.Modules.MealTracker
             }
         }
 
-        //protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        DataRowView data = (DataRowView)e.Row.DataItem;
-        //        LinkButton txtType = (LinkButton)e.Row.FindControl("LinkButtonUpdate");
+      
 
-        //        string _NicheID = DataBinder.Eval(e.Row.DataItem, "NicheID").ToString();
-        //        string vLink = Globals.NavigateURL("ManageEdit", "Resource", _NicheID.ToString(), "mid", this.ModuleId.ToString());
-        //        HyperLink myHyperLink = e.Row.FindControl("HyperLinkEdit") as HyperLink;
-        //        myHyperLink.NavigateUrl = vLink.ToString();
-
-
-        //    }
-        //}
-
-
-        //public void UpdateMeal(int _mealID)
-        //{
-
-        //    try
-        //    {
-
-        //        MealInfo mi_update;
-        //        mi_update = new MealInfo
-
-        //        {
-        //            MealID = _mealID,
-        //            DeliveredCount = Convert.ToInt32(txtDeliveredEdit.Text.ToString()),
-        //            FirstsCount = Convert.ToInt32(txtFirstsCountEdit.Text.ToString()),
-        //            SecondsCount = Convert.ToInt32(txtSecondsCountEdit.Text.ToString()),
-        //            Adults = Convert.ToInt32(txtAdultsCountEdit.Text.ToString()),
-        //            DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
-        //            DeliveryTime = txtMealDateEdit.Text.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString()
-        //        };
-
-        //        mi_update.Save();
-
-        //        FillGrid();
-        //        Panel1.Visible = false;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Exceptions.ProcessModuleLoadException(this, ex);
-        //    }
-
-        //}
-
+   
 
         protected void lbUpdateMeal_Click(object sender, EventArgs e)
         {
@@ -970,13 +990,18 @@ namespace GIBS.Modules.MealTracker
                 DamagedIncomplete = Convert.ToInt16(txtDamagedIncompleteEdit.Text.ToString()),
                 DeliveryTime = deliveredDate.ToString() + " " + ddlDeliveryTimeEdit.SelectedValue.ToString(),
                 Short = Convert.ToInt32(txtShortEdit.Text.ToString()),
-                Notes = txtNotesEdit.Text.ToString()
-
+                Notes = txtNotesEdit.Text.ToString(),
+                DESE = CheckBoxDESEedit.Checked,
+                LocationID = Int32.Parse(ddlLocationEdit.SelectedValue.ToString()),
+                Seating = ddlMealEdit.SelectedValue.ToString(),
+                Location = ddlLocationEdit.SelectedItem.Text.ToString(),
+                MealDate = Convert.ToDateTime(txtMealDateEdit.Text.ToString()),
 
             };
 
-            mi_update.Update();
-
+            mi_update.UpdateAll();
+            ddlLocationEdit.ClearSelection();
+            ddlMealEdit.ClearSelection();
             ddlDeliveryTimeEdit.ClearSelection();
             txtMealDateEdit.Text = string.Empty;
             txtDeliveredEdit.Text = string.Empty;
@@ -1027,8 +1052,11 @@ namespace GIBS.Modules.MealTracker
                     {
                         HiddenMealID.Value = item.MealID.ToString();
                         txtDeliveredEdit.Text = item.DeliveredCount.ToString();
-                        LabelLocation.Text = item.Location.ToString();
-                        LabelMeal.Text = item.Seating.ToString();
+                        
+                        ddlLocationEdit.SelectedValue = item.LocationID.ToString();
+                        ddlMealEdit.SelectedValue = item.Seating.ToString();
+                        CheckBoxDESEedit.Checked = item.DESE;
+                        hfSelecteValue.Value = item.LocationID.ToString();
                         txtMealDateEdit.Text = item.MealDate.ToShortDateString();
                         txtFirstsCountEdit.Text = item.FirstsCount.ToString();
                         txtSecondsCountEdit.Text = item.SecondsCount.ToString();
@@ -1037,7 +1065,9 @@ namespace GIBS.Modules.MealTracker
                         txtNotesEdit.Text = item.Notes.ToString();
                         txtShortEdit.Text = item.Short.ToString();
 
-                        
+                        LoadDeseSettings();
+
+
                         if (item.DeliveryTime.ToString().Length > 0)
                         {
                             ListItem lisource = ddlDeliveryTimeEdit.Items.FindByValue(item.DeliveryTime);
@@ -1072,5 +1102,94 @@ namespace GIBS.Modules.MealTracker
         }
 
 
+        protected void ddlLocationID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClearDelivered();
+            ddlSeating.Enabled = true;
+            ddlSeating.ClearSelection();
+            hfSelecteValue.Value = ddlLocationID.SelectedValue.ToString();
+            
+            //ddlLocationID.Items.FindByValue(hfSelecteValue.Value.ToString()).Selected = true;
+            FillGrid();
+            //LoadDeseSettings();
+
+
+        }
+
+        protected void ddlSeating_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDeseSettings();
+                string whatsSelected = ddlSeating.SelectedValue.ToString();
+                switch (whatsSelected.ToString())
+                {
+                    case "Breakfast Seating":
+                        CheckBoxDESE.Checked = _DESE_Breakfast;
+                        break;
+                    case "AM Snack":
+                        CheckBoxDESE.Checked = _DESE_Snack;
+                        break;
+
+                    case "Lunch Seating":
+                        CheckBoxDESE.Checked = _DESE_Lunch;
+                        break;
+                    case "PM Snack":
+                        CheckBoxDESE.Checked = _DESE_Snack_PM;
+                        break;
+
+                    default:
+                        CheckBoxDESE.Checked = false;
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
+
+        protected void ddlLocationEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hfSelecteValue.Value = ddlLocationEdit.SelectedValue.ToString();
+            LoadDeseSettings();
+
+        }
+
+        protected void ddlMealEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string whatsSelected = ddlMealEdit.SelectedValue.ToString();
+                switch (whatsSelected.ToString())
+                {
+                    case "Breakfast Seating":
+                        CheckBoxDESEedit.Checked = _DESE_Breakfast;
+                        break;
+                    case "AM Snack":
+                        CheckBoxDESEedit.Checked = _DESE_Snack;
+                        break;
+
+                    case "Lunch Seating":
+                        CheckBoxDESEedit.Checked = _DESE_Lunch;
+                        break;
+                    case "PM Snack":
+                        CheckBoxDESEedit.Checked = _DESE_Snack_PM;
+                        break;
+
+                    default:
+                        CheckBoxDESEedit.Checked = false;
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
     }
 }

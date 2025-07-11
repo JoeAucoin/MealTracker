@@ -1326,7 +1326,16 @@ namespace GIBS.Modules.MealTracker
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelLocation;
+        protected global::DotNetNuke.UI.UserControls.LabelControl LabelLocation;
+
+        /// <summary>
+        /// ddlLocationEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocationEdit;
 
         /// <summary>
         /// LabelMeal control.
@@ -1335,7 +1344,34 @@ namespace GIBS.Modules.MealTracker
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelMeal;
+        protected global::DotNetNuke.UI.UserControls.LabelControl LabelMeal;
+
+        /// <summary>
+        /// ddlMealEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMealEdit;
+
+        /// <summary>
+        /// lblDeseCbxEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblDeseCbxEdit;
+
+        /// <summary>
+        /// CheckBoxDESEedit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxDESEedit;
 
         /// <summary>
         /// lblMealDateEdit control.

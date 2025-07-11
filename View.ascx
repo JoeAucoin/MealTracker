@@ -19,6 +19,14 @@
        
     });
 
+        $(function () {
+         
+            $('#txtMealDateEdit').datepicker({
+             beforeShowDay: $.datepicker.noWeekends
+            
+         });
+     });
+
 
     function fillDates(date) {
        
@@ -445,18 +453,24 @@
     <h5>EDIT RECORD</h5>  
     <div class="row form">
 <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-4">
-    <asp:Label ID="LabelLocation" runat="server" Text="LabelLocation" CssClass="NormalBold lead"></asp:Label>
+    <dnn:Label ID="LabelLocation" runat="server" Text="Program" suffix=":" CssClass="control-label"></dnn:Label>
+    <asp:DropDownList ID="ddlLocationEdit" runat="server" CssClass="form-control input-lg" OnSelectedIndexChanged="ddlLocationEdit_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 </div>
 <div class="form-group col-xs-5 col-sm-5 col-md-3 col-lg-3">
-    <asp:Label ID="LabelMeal" runat="server" Text="LabelMeal" CssClass="NormalBold lead"></asp:Label>
+    <dnn:Label ID="LabelMeal" runat="server" Text="Meal" suffix=":" CssClass="control-label"></dnn:Label>
+    <asp:DropDownList ID="ddlMealEdit" runat="server" CssClass="form-control input-lg" OnSelectedIndexChanged="ddlMealEdit_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 </div>
+        <div class="form-group col-xs-6 col-sm-1 col-md-1 col-lg-1 checkbox-lg">
+            <dnn:label id="lblDeseCbxEdit" runat="server" controlname="CheckBoxDESEedit" suffix=":" CssClass="control-label" />
+            <asp:CheckBox ID="CheckBoxDESEedit" runat="server" Enabled="false" CssClass="form-control form-check-input"  />
+            </div>
 </div>
 
     <div class="row form">
 
 
         <div class="form-group col-xs-5 col-sm-5 col-md-2 col-lg-2 "><dnn:label id="lblMealDateEdit" runat="server" controlname="txtMealDateEdit" suffix=":" for="txtMealDateEdit" CssClass="control-label" />
-			<asp:TextBox ID="txtMealDateEdit" runat="server" MaxLength="10" ReadOnly="true" ValidationGroup="MealUpdate" AutoCompleteType="Disabled" ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
+			<asp:TextBox ID="txtMealDateEdit" runat="server" MaxLength="10" ValidationGroup="MealUpdate" AutoCompleteType="Disabled" ClientIDMode="Static" CssClass="form-control input-lg"></asp:TextBox>
 	    <asp:RequiredFieldValidator runat="server" id="RequiredFieldValidator5" resourcekey="reqMealDate" controltovalidate="txtMealDateEdit" errormessage="Required!" Display="Dynamic" CssClass="NormalRed" />
         </div>
 
@@ -531,7 +545,7 @@
 
         <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" >
          <ItemTemplate>
-             <asp:LinkButton ID="LinkButtonUpdate" CausesValidation="false" runat="server" CommandName="DataCommand" CommandArgument='<%# Eval("MealID" )%>'><img src="/Icons/Sigma/Edit_16X16_Standard_2.png" alt="Edit" /></asp:LinkButton>
+             <asp:LinkButton ID="LinkButtonUpdate" CausesValidation="false" runat="server" CommandName="DataCommand" CommandArgument='<%# Eval("MealID" )%>'><img src="/Icons/Sigma/Edit_32X32_Standard.png" alt="Edit" /></asp:LinkButton>
            
          </ItemTemplate>
             <ItemStyle Width="20px"></ItemStyle>
@@ -542,7 +556,7 @@
            <asp:LinkButton ID="LinkButtonDelete" CausesValidation="false"     
              CommandArgument='<%# Eval("MealID") %>' 
              CommandName="Delete" runat="server" meta:resourcekey="LinkButtonEditResource1">
-             <img src="/Icons/Sigma/Delete_16X16_Standard_2.png" alt="Delete" /></asp:LinkButton>
+             <img src="/Icons/Sigma/Delete_32x32_Standard.png" alt="Delete" /></asp:LinkButton>
          </ItemTemplate>
 
 <ItemStyle Width="20px"></ItemStyle>

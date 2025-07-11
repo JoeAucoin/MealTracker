@@ -1,1 +1,60 @@
 ﻿
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_MealUpdate]    Script Date: 7/9/2025 9:01:41 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_MealTracker_MealUpdateAll]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_MealTracker_MealUpdateAll]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_MealTracker_MealUpdate]    Script Date: 7/9/2025 9:01:41 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GIBS_MealTracker_MealUpdateAll] 
+	-- Add the parameters for the stored procedure here
+	@MealDate DateTime,
+	@Location varchar(50),
+	@LocationID int,
+	@Seating varchar(50),
+	@DeliveredCount int,
+	@FirstsCount int,
+	@SecondsCount int,
+	@MealID int,
+	@Adults int,
+	@DESE bit,
+	@DeliveryTime DateTime, 
+	@DamagedIncomplete int,
+	@Short int,
+	@Notes ntext
+
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	UPDATE [dbo].[GIBS_MealTracker]
+   SET
+   [MealDate] = @MealDate,
+   [Location] = @Location,
+   [LocationID] = @LocationID,
+   [Seating] = @Seating,
+      [DeliveredCount] = @DeliveredCount
+      ,[FirstsCount] = @FirstsCount
+      ,[SecondsCount] = @SecondsCount
+	  ,[Adults] = @Adults 
+	  ,[DESE] = @DESE
+	  ,DeliveryTime = @DeliveryTime
+	  ,DamagedIncomplete = @DamagedIncomplete
+	  ,Short = @Short
+	  ,Notes = @Notes
+ WHERE MealID = @MealID
+END
+GO
+
+

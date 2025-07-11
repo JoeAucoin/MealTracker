@@ -65,6 +65,10 @@ namespace GIBS.Modules.MealTracker.Components
             MealTracker.Components.MealController.UpdateMeal(this);
         }
 
+        public void UpdateAll()
+        {
+            MealTracker.Components.MealController.UpdateMealAll(this);
+        }
 
     }
 }

@@ -126,6 +126,11 @@ namespace GIBS.Modules.MealTracker.Components
             DataProvider.Instance().MealTracker_MealUpdate(mi);
         }
 
+        public static void UpdateMealAll(MealInfo mi)
+        {
+            DataProvider.Instance().MealTracker_MealUpdateAll(mi);
+        }
+
         public static void UpdateLocation(MealInfo mi)
         {
             DataProvider.Instance().MealTracker_UpdateLocation(mi);
