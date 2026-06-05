@@ -130,7 +130,7 @@
     <value>Code</value>
   </data>
   <data name="lblLocationName.Text" xml:space="preserve">
-    <value>Program Name</value>
+    <value>Location Name</value>
   </data>
   <data name="lblRegion.Text" xml:space="preserve">
     <value>State</value>

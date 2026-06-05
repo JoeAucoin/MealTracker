@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="MealTracker" type="Module" version="00.00.23">
+    <package name="MealTracker" type="Module" version="00.00.24">
       <friendlyName>MealTracker</friendlyName>
       <description>GIBS.com MealTracker module</description>
       <iconFile>~/Images/icon_extensions_32px.png</iconFile>
@@ -14,7 +14,7 @@
       <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
       <azureCompatible>true</azureCompatible>
       <dependencies>
-        <dependency type="CoreVersion">07.00.02</dependency>
+        <dependency type="CoreVersion">09.00.02</dependency>
       </dependencies>
       
       <components>
@@ -84,7 +84,7 @@
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>00.00.23</version>
+              <version>00.00.24</version>
             </script>
           </scripts>
         </component>
@@ -136,7 +136,7 @@
                     <controlKey>Locations</controlKey>
                     <controlSrc>DesktopModules/MealTracker/Locations.ascx</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>
-                    <controlTitle>Manage Programs</controlTitle>
+                    <controlTitle>Manage Locations</controlTitle>
                     <controlType>View</controlType>
                     <iconFile />
                     <helpUrl />

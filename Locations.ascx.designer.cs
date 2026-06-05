@@ -15,6 +15,15 @@ namespace GIBS.Modules.MealTracker
     {
 
         /// <summary>
+        /// LinkButtonAddNewLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAddNewLocation;
+
+        /// <summary>
         /// LabelDebug control.
         /// </summary>
         /// <remarks>
@@ -231,12 +240,12 @@ namespace GIBS.Modules.MealTracker
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// LinkButtonAddNewLocation control.
+        /// btnReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAddNewLocation;
+        protected global::System.Web.UI.WebControls.Button btnReturn;
     }
 }

@@ -9,7 +9,7 @@
 
 
   </script>
-
+<div class="mt-3 mb-3 text-end"><asp:LinkButton ID="LinkButtonAddNewLocation" runat="server" OnClick="LinkButtonAddNewLocation_Click" CssClass="btn btn-primary">Add New Location</asp:LinkButton></div>
 <div id="hide-it" CssClass="dnnFormSuccess" style="width: 100%; text-align: center;">
 <asp:Label ID="LabelDebug" runat="server" Text="" CssClass="lead"></asp:Label>
     </div>
@@ -110,7 +110,7 @@
       </asp:TemplateField>
     
         <asp:BoundField HeaderText="Code" Visible="true" DataField="LocationCode" SortExpression="LocationCode" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
-       <asp:BoundField HeaderText="Program" DataField="Location" Visible="true" SortExpression="Location" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
+       <asp:BoundField HeaderText="Location" DataField="Location" Visible="true" SortExpression="Location" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
          <asp:BoundField HeaderText="Address" DataField="Address" Visible="false" SortExpression="Address" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
      <asp:BoundField HeaderText="Town" DataField="City" SortExpression="City"  ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
         
@@ -129,7 +129,7 @@
     </Columns>
 </asp:GridView>	
 
-<div style="text-align: right; width: 100%;">
-    <asp:LinkButton ID="LinkButtonAddNewLocation" runat="server" OnClick="LinkButtonAddNewLocation_Click" CssClass="btn btn-primary">Add New Program</asp:LinkButton>
 
-</div>
+
+<div class="text-end"><asp:Button ID="btnReturn" resourcekey="btnReturn" runat="server" CssClass="dnnSecondaryAction" 
+                Text="Return" onclick="btnReturn_Click" /></div>

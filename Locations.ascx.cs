@@ -197,5 +197,17 @@ namespace GIBS.Modules.MealTracker
             LabelEditPanelMode.Text = "ADD NEW RECORD";
             Panel1.Visible = true;
         }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect(Globals.NavigateURL(), true);
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
     }
 }

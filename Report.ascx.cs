@@ -131,7 +131,7 @@ namespace GIBS.Modules.MealTracker
                 ddlLocationID.DataValueField = "LocationID";
                 ddlLocationID.DataSource = items;
                 ddlLocationID.DataBind();
-                ddlLocationID.Items.Insert(0, new ListItem("-- Search All Programs --", "0"));
+                ddlLocationID.Items.Insert(0, new ListItem("-- Search All Locations --", "0"));
                 //  ddlLocationID.SelectedValue = "MA";
 
                 //ddlTowns

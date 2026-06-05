@@ -7,6 +7,10 @@
 
 
     $(function () {
+        $('#<%= ddlDeliveryTime.ClientID %>').on('change', function () {
+            copyDeliveryTime();
+        });
+
         $("#txtMealDate").datepicker({
             onSelect: function (date) {
                 fillDates(date);
@@ -48,6 +52,14 @@
     
     }
 
+
+    function copyDeliveryTime() {
+        var selectedVal = $('#<%= ddlDeliveryTime.ClientID %>').val();
+        $('#<%= ddlDeliveryTimeTues.ClientID %>').val(selectedVal);
+        $('#<%= ddlDeliveryTimeWeds.ClientID %>').val(selectedVal);
+        $('#<%= ddlDeliveryTimeThurs.ClientID %>').val(selectedVal);
+        $('#<%= ddlDeliveryTimeFri.ClientID %>').val(selectedVal);
+    }
 
     function myCopyFunction() {
         var myNumber = document.getElementById('txtDelivered').value;
@@ -453,7 +465,7 @@
     <h5>EDIT RECORD</h5>  
     <div class="row form">
 <div class="form-group col-xs-5 col-sm-5 col-md-4 col-lg-4">
-    <dnn:Label ID="LabelLocation" runat="server" Text="Program" suffix=":" CssClass="control-label"></dnn:Label>
+    <dnn:Label ID="LabelLocation" runat="server" Text="Location" suffix=":" CssClass="control-label"></dnn:Label>
     <asp:DropDownList ID="ddlLocationEdit" runat="server" CssClass="form-control input-lg" OnSelectedIndexChanged="ddlLocationEdit_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
 </div>
 <div class="form-group col-xs-5 col-sm-5 col-md-3 col-lg-3">
@@ -589,7 +601,7 @@
 		<asp:BoundField HeaderText="Seconds" DataField="SecondsCount" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
 <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>
-<asp:BoundField HeaderText="Adults" DataField="Adults" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
+<asp:BoundField HeaderText="Others" DataField="Adults" ItemStyle-Width="65px" ItemStyle-HorizontalAlign="Center">
 
 <ItemStyle HorizontalAlign="Center" Width="65px"></ItemStyle>
         </asp:BoundField>

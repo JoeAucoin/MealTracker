@@ -43,7 +43,7 @@
  </script>
 
 
-<div style=" float:right">
+<div style="float:right" class="text-end pt-3">
 <asp:Button ID="btnFilter" runat="server" Text="Update" 
                 resourcekey="btnFilter" onclick="btnFilter_Click" CssClass="dnnPrimaryAction" />
 </div>
@@ -52,7 +52,7 @@
 
 
 
-<div class="container">
+<div class="container pt-3">
     	<div class="row form">
 
             
@@ -117,7 +117,7 @@
     <Columns>
         
         <asp:BoundField HeaderText="Month" DataField="MonthYear"  ItemStyle-Width="90px"></asp:BoundField>
-    <asp:BoundField HeaderText="Program" DataField="Location"></asp:BoundField>
+    <asp:BoundField HeaderText="Location" DataField="Location"></asp:BoundField>
 <asp:BoundField HeaderText="Meal" DataField="Seating"></asp:BoundField>
       <asp:TemplateField HeaderText="Delivered" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
          <ItemTemplate>
@@ -158,7 +158,7 @@
          </FooterTemplate>
      </asp:TemplateField>
        
-                  <asp:TemplateField HeaderText="Adults" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                  <asp:TemplateField HeaderText="Others" Visible="true" ItemStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
          <ItemTemplate>
          <asp:Label ID="lblAdults" runat="server" Text='<%# Eval("Adults") %>'/>
          </ItemTemplate>
@@ -212,7 +212,7 @@
 <PagerStyle CssClass="pgr" />  
 <PagerSettings Mode="NumericFirstLast" /> 
     <Columns>
-<asp:BoundField HeaderText="Program" DataField="Location" SortExpression="Location"  ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
+<asp:BoundField HeaderText="Location" DataField="Location" SortExpression="Location"  ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Left"></asp:BoundField>
     <asp:BoundField HeaderText="MealID" Visible="false" DataField="MealID" SortExpression="MealID" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="LocationID" Visible="false" DataField="LocationID" SortExpression="LocationID" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
        <asp:BoundField HeaderText="MealDate" DataField="MealDate" DataFormatString="{0:MM-dd-yyyy}"  Visible="true" SortExpression="MealDate" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
@@ -227,7 +227,7 @@
         <asp:BoundField HeaderText="Firsts" DataField="FirstsCount" SortExpression="FirstsCount" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
 		<asp:BoundField HeaderText="Seconds" DataField="SecondsCount" SortExpression="SecondsCount" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="Total Served" DataField="TotalMealsCount" Visible="true" SortExpression="TotalMealsCount" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
-        <asp:BoundField HeaderText="Adults" DataField="Adults" SortExpression="Adults" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+        <asp:BoundField HeaderText="Others" DataField="Adults" SortExpression="Adults" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="LeftOvers" DataField="LeftOvers" SortExpression="LeftOvers" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
         <asp:BoundField HeaderText="Short" DataField="Short" SortExpression="Short" ItemStyle-VerticalAlign="Middle" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
 

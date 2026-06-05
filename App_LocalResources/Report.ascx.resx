@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblLocation.Text" xml:space="preserve">
-    <value>Program</value>
+    <value>Location</value>
   </data>
   <data name="lblLocationCode.Text" xml:space="preserve">
     <value>Code</value>

@@ -124,22 +124,22 @@
     <value>Cancel</value>
   </data>
   <data name="lblAdults.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblAdultsCountEdit.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblAdultsFri.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblAdultsThurs.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblAdultsTues.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblAdultsWeds.Text" xml:space="preserve">
-    <value>Adults</value>
+    <value>Others</value>
   </data>
   <data name="lblDamagedIncomplete.Text" xml:space="preserve">
     <value>Damaged</value>
@@ -265,10 +265,10 @@
     <value>Notes</value>
   </data>
   <data name="lbLocations.Text" xml:space="preserve">
-    <value>Programs</value>
+    <value>Locations</value>
   </data>
   <data name="lblSchoolLocation.Text" xml:space="preserve">
-    <value>Program</value>
+    <value>Location</value>
   </data>
   <data name="lblSeating.Text" xml:space="preserve">
     <value>Meal</value>
