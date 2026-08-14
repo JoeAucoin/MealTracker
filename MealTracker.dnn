@@ -1,6 +1,6 @@
 <dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="MealTracker" type="Module" version="00.00.24">
+    <package name="MealTracker" type="Module" version="00.00.27">
       <friendlyName>MealTracker</friendlyName>
       <description>GIBS.com MealTracker module</description>
       <iconFile>~/Images/icon_extensions_32px.png</iconFile>
@@ -84,7 +84,7 @@
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>00.00.24</version>
+              <version>00.00.27</version>
             </script>
           </scripts>
         </component>

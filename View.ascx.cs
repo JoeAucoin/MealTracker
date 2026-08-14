@@ -102,6 +102,11 @@ namespace GIBS.Modules.MealTracker
                     GridView1.DataBind();
 
                     GetDropDownLists();
+
+                    if (string.IsNullOrWhiteSpace(txtMealDateSingle.Text))
+                    {
+                        txtMealDateSingle.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                    }
                 }
                 //else
                 //{
@@ -160,7 +165,9 @@ namespace GIBS.Modules.MealTracker
                 ddlDeliveryTimeEdit.DataBind();
                 ddlDeliveryTimeEdit.Items.Insert(0, new ListItem("-- Select --", "0"));
 
-
+                DropDownList1.DataSource = lstTimeIntervals;
+                DropDownList1.DataBind();
+                DropDownList1.Items.Insert(0, new ListItem("-- Select --", "0"));
 
             }
             catch (Exception ex)
@@ -261,6 +268,11 @@ namespace GIBS.Modules.MealTracker
                 ddlLocationEdit.DataBind();
                 ddlLocationEdit.Items.Insert(0, new ListItem("-- Please Select --", "0"));
 
+                ddlLocationIDSingle.DataTextField = "Location";
+                ddlLocationIDSingle.DataValueField = "LocationID";
+                ddlLocationIDSingle.DataSource = items;
+                ddlLocationIDSingle.DataBind();
+                ddlLocationIDSingle.Items.Insert(0, new ListItem("-- Please Select --", "0"));
 
                 //MTMealSeating  ddlSeating
                 var seating = new ListController().GetListEntryInfoItems(_SeatingList, "", this.PortalId);
@@ -271,6 +283,13 @@ namespace GIBS.Modules.MealTracker
                 ddlSeating.Items.Insert(0, new ListItem("-- Please Select --", ""));
 
                 ddlSeating.Enabled = false;
+
+                ddlSeatingSingle.DataTextField = "Text";
+                ddlSeatingSingle.DataValueField = "Value";
+                ddlSeatingSingle.DataSource = seating;
+                ddlSeatingSingle.DataBind();
+                ddlSeatingSingle.Items.Insert(0, new ListItem("-- Please Select --", ""));
+                ddlSeatingSingle.Enabled = false;
 
                 ddlMealEdit.DataTextField = "Text";
                 ddlMealEdit.DataValueField = "Value";
@@ -390,6 +409,14 @@ namespace GIBS.Modules.MealTracker
                 SaveMealForDay("Weds", txtDeliveredWeds, txtMealDateWeds, cbxDeliveryPriorDayWeds, txtFirstsCountWeds, txtSecondsCountWeds, txtAdultsWeds, ddlDeliveryTimeWeds, txtDamagedIncompleteWeds, txtShortWeds);
                 SaveMealForDay("Thurs", txtDeliveredThurs, txtMealDateThurs, cbxDeliveryPriorDayThurs, txtFirstsCountThurs, txtSecondsCountThurs, txtAdultsThurs, ddlDeliveryTimeThurs, txtDamagedIncompleteThurs, txtShortThurs);
                 SaveMealForDay("Fri", txtDeliveredFri, txtMealDateFri, cbxDeliveryPriorDayFri, txtFirstsCountFri, txtSecondsCountFri, txtAdultsFri, ddlDeliveryTimeFri, txtDamagedIncompleteFri, txtShortFri);
+
+                var savedMessage = Localization.GetString("Saved.Text", this.LocalResourceFile);
+                if (string.IsNullOrWhiteSpace(savedMessage))
+                {
+                    savedMessage = "Meal saved successfully.";
+                }
+
+                Skin.AddModuleMessage(this, savedMessage, DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess);
             }
             ClearForm();
             FillGrid();
@@ -1101,6 +1128,153 @@ namespace GIBS.Modules.MealTracker
             Response.Redirect(Globals.NavigateURL(PortalSettings.ActiveTab.TabID, "Locations", "mid=" + ModuleId.ToString()));
         }
 
+        protected void ddlLocationIDSingle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlSeatingSingle.Enabled = true;
+            ddlSeatingSingle.ClearSelection();
+            CheckBoxDESESingle.Checked = false;
+
+            hfSelecteValue.Value = ddlLocationIDSingle.SelectedValue;
+            if (hfSelecteValue.Value != "0")
+            {
+                LoadDeseSettings();
+            }
+        }
+
+        protected void ddlSeatingSingle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlLocationIDSingle.SelectedValue == "0")
+                {
+                    CheckBoxDESESingle.Checked = false;
+                    return;
+                }
+
+                hfSelecteValue.Value = ddlLocationIDSingle.SelectedValue;
+                LoadDeseSettings();
+
+                switch (ddlSeatingSingle.SelectedValue)
+                {
+                    case "Breakfast Seating":
+                        CheckBoxDESESingle.Checked = _DESE_Breakfast;
+                        break;
+                    case "AM Snack":
+                        CheckBoxDESESingle.Checked = _DESE_Snack;
+                        break;
+                    case "Lunch Seating":
+                        CheckBoxDESESingle.Checked = _DESE_Lunch;
+                        break;
+                    case "PM Snack":
+                        CheckBoxDESESingle.Checked = _DESE_Snack_PM;
+                        break;
+                    default:
+                        CheckBoxDESESingle.Checked = false;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+        }
+
+        protected void txtMealDate_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        protected void LbSaveSingleClick(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
+            if (!int.TryParse(txtDeliveredSingle.Text, out int deliveredCount) || deliveredCount <= 0)
+            {
+                return;
+            }
+
+            string mealDateText = txtMealDateSingle.Text;
+            if (!DateTime.TryParse(mealDateText, out DateTime mealDate))
+            {
+                mealDate = DateTime.Now.Date;
+                mealDateText = mealDate.ToString("MM/dd/yyyy");
+            }
+
+            string deliveredDate = mealDateText;
+            if (CheckBox1.Checked)
+            {
+                deliveredDate = mealDate.AddDays(-1).ToString("MM/dd/yyyy");
+            }
+
+            int.TryParse(txtDamagedIncompleteSingle.Text, out int damagedIncomplete);
+            int.TryParse(txtFirstsCountSingle.Text, out int firstsCount);
+            int.TryParse(txtSecondsCountSingle.Text, out int secondsCount);
+            int.TryParse(txtAdultsSingle.Text, out int adults);
+            int.TryParse(txtShortSingle.Text, out int shortCount);
+            int.TryParse(ddlLocationIDSingle.SelectedValue, out int locationId);
+
+            var cleanup = new PortalSecurity();
+            string notes = cleanup.InputFilter(txtMealNotesSingle.Text, PortalSecurity.FilterFlag.NoScripting);
+            notes = cleanup.InputFilter(notes, PortalSecurity.FilterFlag.NoMarkup);
+
+            var mealInfo = new MealInfo
+            {
+                MealDate = mealDate,
+                Seating = ddlSeatingSingle.SelectedValue,
+                DeliveredCount = deliveredCount,
+                FirstsCount = firstsCount,
+                SecondsCount = secondsCount,
+                Location = ddlLocationIDSingle.SelectedItem.Text,
+                LocationID = locationId,
+                Notes = notes,
+                CreatedByUserID = this.UserId,
+                MTPortalID = this.PortalId,
+                Adults = adults,
+                DESE = CheckBoxDESESingle.Checked,
+                DeliveryTime = deliveredDate + " " + DropDownList1.SelectedValue,
+                DamagedIncomplete = damagedIncomplete,
+                Short = shortCount
+            };
+
+            mealInfo.Save();
+
+            var savedMessage = Localization.GetString("Saved.Text", this.LocalResourceFile);
+            if (string.IsNullOrWhiteSpace(savedMessage))
+            {
+                savedMessage = "Meal saved successfully.";
+            }
+
+            Skin.AddModuleMessage(this, savedMessage, DotNetNuke.UI.Skins.Controls.ModuleMessage.ModuleMessageType.GreenSuccess);
+            
+            ClearSingleForm();
+            FillGrid();
+        }
+
+        protected void LbCancelSingleClick(object sender, EventArgs e)
+        {
+            ClearSingleForm();
+        }
+
+        private void ClearSingleForm()
+        {
+            ddlLocationIDSingle.ClearSelection();
+            ddlSeatingSingle.ClearSelection();
+            ddlSeatingSingle.Enabled = false;
+            DropDownList1.ClearSelection();
+
+            txtMealDateSingle.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            txtDeliveredSingle.Text = string.Empty;
+            txtDamagedIncompleteSingle.Text = "0";
+            txtFirstsCountSingle.Text = string.Empty;
+            txtSecondsCountSingle.Text = string.Empty;
+            txtAdultsSingle.Text = string.Empty;
+            txtShortSingle.Text = "0";
+            CheckBox1.Checked = false;
+            CheckBoxDESESingle.Checked = false;
+            txtMealNotesSingle.Text = string.Empty;
+        }
 
         protected void ddlLocationID_SelectedIndexChanged(object sender, EventArgs e)
         {
